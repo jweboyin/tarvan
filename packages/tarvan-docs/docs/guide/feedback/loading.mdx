@@ -1,0 +1,79 @@
+import Image from '../../components/image'
+
+# Loading 加载
+
+### 介绍
+
+加载图标，用于表示加载中的过渡状态。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Loading } from 'czh-weapp'
+```
+
+### 加载类型
+
+<Image src="/imgs/loading/type.jpg" />
+
+```jsx
+<Loading />
+<Loading type="spinner" />
+```
+
+### 自定义颜色
+
+<Image src="/imgs/loading/color.jpg" />
+
+```jsx
+<Loading className={style.customColor} />
+```
+
+```css
+.customColor {
+  --loading-spinner-color: #1989fa;
+}
+```
+
+### 加载文案
+
+<Image src="/imgs/loading/text.jpg" />
+
+```jsx
+<Loading>加载中...</Loading>
+```
+
+### 垂直排列
+
+<Image src="/imgs/loading/vertical.jpg" />
+
+```jsx
+<Loading vertical>加载中...</Loading>
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| type | 类型，可选值为 `spinner` | _string_ | `circular` |
+| vertical | 是否垂直排列图标和文字内容 | _boolean_ | `false` |
+</div>
+
+### CSS 变量
+
+<div class="table-container">
+| 属性 | 说明 | 默认值 |
+| --- | --- | --- |
+| --czh-loading-spinner-color | 图标颜色 | `#c8c9cc` | 
+| --czh-loading-spinner-size | 图标大小 | `60px` | 
+| --czh-loading-spinner-animation-duration | 图标旋转动画duration | `0.8s` |
+| --czh-loading-text-spacing | 文字与图标之间的间距 | `36px` | 
+| --czh-loading-text-color | 文字颜色 | `#969799` | 
+| --czh-loading-text-font-size | 文字大小 | `28px` | 
+| --czh-loading-text-line-height | 文字行高 | `40px` | 
+</div>

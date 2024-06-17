@@ -1,0 +1,89 @@
+import Image from '../../components/image'
+
+# Divider 分割线
+
+### 介绍
+
+用于将内容分隔为多个区域。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Divider } from 'czh-weapp'
+```
+
+### 基础用法
+
+<Image src="/imgs/divider/basic.jpg" />
+
+```jsx
+<Divider />
+```
+
+### 内容位置
+
+通过contentPosition属性控制内容位置。
+
+<Image src="/imgs/divider/position.jpg" />
+
+```jsx
+<Divider contentPosition="center">文本</Divider>	
+<Divider contentPosition="left">文本</Divider>	
+<Divider contentPosition="right">文本</Divider>	
+```
+
+### 虚线
+
+通过dashed属性设为虚线。
+
+<Image src="/imgs/divider/dashed.jpg" />
+
+```jsx
+<Divider dashed />
+```
+
+### 自定义样式
+
+通过css变量实现自定义样式。
+
+<Image src="/imgs/divider/custom.jpg" />
+
+```jsx
+<Divider 
+  contentPosition="center" 
+  style={{
+    '--czh-divider-text-color': '#1989fa',
+    '--czh-divider-border-color': '#1989fa',
+    '--czh-divider-font-size': '18px'
+  }}
+>文本</Divider>
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| dashed | 是否为虚线	| _boolean_ | `false` |
+| hairline | 是否为细线	 | _boolean_ | `false` |
+| contentPosition | 文本位置，left \| center \| right	 | _string_ | - |
+</div>
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-divider-margin | margin设置 | `var(--czh-padding-md) 0` |
+| --czh-divider-text-color | 字体颜色 | `--czh-color-gray-6` |
+| --czh-divider-font-size | 字体大小 | `--czh-font-size-md` |
+| --czh-divider-line-height | 字体行高 | `48px` |
+| --czh-divider-border-color | 边框颜色 | `--czh-border-color` |
+| --czh-divider-content-padding | 内容padding | `--czh-padding-md` |
+| --czh-divider-content-left-width | 内容左侧最大宽度 | `10%` |
+| --czh-divider-content-right-width | 内容右侧最大宽度 | `10%` |
+</div>

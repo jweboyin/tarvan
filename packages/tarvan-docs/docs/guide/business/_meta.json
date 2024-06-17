@@ -1,0 +1,22 @@
+[
+  {
+    "type": "file",
+    "name": "login",
+    "label": "Login 登录"
+  },
+  {
+    "type": "file",
+    "name": "plate-number-keyboard",
+    "label": "PlateNumberKeyword 车牌号键盘"
+  },
+  {
+    "type": "file",
+    "name": "area",
+    "label": "Area 省市区选择"
+  },
+  {
+    "type": "file",
+    "name": "car-brand-list",
+    "label": "CarBrandList 车辆品牌列表"
+  }
+]

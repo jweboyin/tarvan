@@ -1,0 +1,89 @@
+import Image from '../../components/image'
+import DocSpace from '../../components/doc-space'
+
+# PlateNumberKeyboard 车牌号键盘
+
+## 介绍
+
+用于显示一个省份，字母以及数字的虚拟键盘来输入车牌号。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { PlateNumberKeyboard } from 'czh-weapp'
+```
+
+### 基础用法
+
+<DocSpace>
+	<Image src="/imgs/plate-number-keyboard/basic.jpg" />
+	<Image src="/imgs/plate-number-keyboard/basic2.jpg" />
+</DocSpace>
+
+```jsx
+const [plateNumber, setPlateNumber] = useState('')
+
+const onConfirm = (value) => {
+	setPlateNumber(value)
+}
+
+<PlateNumberKeyboard 
+	plateNumber={plateNumber}
+	show
+	onConfirm={onConfirm}
+/>
+```
+
+### 键盘弹窗z-index设置为99
+
+```jsx
+<PlateNumberKeyboard 
+	show
+	zIndex={99}
+/>
+```
+
+### 按键激活颜色设置
+
+通过className或style改变css变量来设置激活颜色。
+
+<DocSpace>
+	<Image src="/imgs/plate-number-keyboard/color.jpg" />
+	<Image src="/imgs/plate-number-keyboard/color2.jpg" />
+</DocSpace>
+
+```jsx
+<PlateNumberKeyboard 
+	show
+	style={{
+		'--key-hovered-background': '#DDDDDD',
+		'--key-hovered-color': '#1677FF'
+	}}
+/>
+```
+
+
+## API
+
+### Props
+
+<div class="table-container">
+| 属性        | 说明                             | 类型         | 默认值      |
+| ----------- | -------------------------------- | -----------| ----------- |
+| show       |  是否显示                       | _boolean_ | `false` |
+| plateNumber | 当前车牌号 | _string_ | - |
+| zIndex | zIndex值 | _number_ | 10 |
+| onConfirm | 点击完成事件 | _Function_ | - |
+| onCanel| 点击取消事件 | _Function_ | - |
+</div>
+
+#### CSS 变量
+
+<div class="table-container">
+| 属性               | 说明     | 默认值                    |
+| ------------------ | -------- | ------------------------- |
+| --czh-plate-number-keyboard-key-hovered-background     | 点击键时的背景颜色 | `#1677FF`   |
+| --czh-plate-number-keyboard-key-hovered-color | 点击键时的字体颜色 | `#FFFFFF`  |
+</div>

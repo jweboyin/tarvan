@@ -1,0 +1,242 @@
+import Image from '../../components/image'
+
+# Checkbox 复选框
+
+### 介绍
+
+在一组备选项中进行多选。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Checkbox } from 'czh-weapp'
+```
+
+### 单独用法
+
+<Image src="/imgs/checkbox/basic.jpg" />
+
+```jsx
+<Checkbox>非受控的</Checkbox>
+<Checkbox checked={checked} onChange={onChangeChecked}>受控选中</Checkbox>
+<Checkbox defaultChecked>默认选中的</Checkbox>
+<Checkbox defaultChecked disabled>禁用的</Checkbox>
+<Checkbox labelDisabled>禁用文本点击</Checkbox>
+<Checkbox shape="round">自定义形状</Checkbox>
+<Checkbox defaultChecked style={{
+  '--czh-checkbox-checked-icon-color': '#07c160'
+}}>自定义颜色</Checkbox>
+<Checkbox style={{
+  '--czh-checkbox-size': '50px'
+}}>自定义大小</Checkbox>
+<Checkbox 
+  defaultChecked
+  icon={(checked) => {
+    return (
+      <Icon name={checked ? 'checked' : 'circle'} />
+    )
+  }}
+>自定义图标</Checkbox>
+```
+
+### 复选框组不受控用法
+
+<Image src="/imgs/checkbox/uncontrolled.jpg" />
+
+```jsx
+<Checkbox.Group>
+  {
+    ['a', 'b', 'c'].map((item) => {
+      return (
+        <Checkbox key={item} value={item}>复选框{item}</Checkbox>
+      )
+    })
+  }
+</Checkbox.Group>
+```
+
+### 复选框组受控用法
+
+通过value以及onChange属性控制选中的复选框。
+
+<Image src="/imgs/checkbox/controlled.jpg" />
+
+```jsx
+const [result, setResult] = useState(['a', 'b'])
+
+const onChangeResult = (val) => {
+  setResult(val)
+}
+
+<Checkbox.Group value={result} onChange={onChangeResult}>
+  {
+    ['a', 'b', 'c'].map((item) => {
+      return (
+        <Checkbox key={item} value={item}>复选框{item}</Checkbox>
+      )
+    })
+  }
+</Checkbox.Group>
+```
+
+### 复选框组默认选中
+
+通过defaultValue属性控制默认选中的复选框。
+
+<Image src="/imgs/checkbox/default.jpg" />
+
+```jsx
+<Checkbox.Group defaultValue={['a', 'c']}>
+  {
+    ['a', 'b', 'c'].map((item) => {
+      return (
+        <Checkbox key={item} value={item}>复选框{item}</Checkbox>
+      )
+    })
+  }
+</Checkbox.Group>
+```
+
+### 复选框组水平排列
+
+通过direction属性控制复选框组排列方向。
+
+<Image src="/imgs/checkbox/direction.jpg" />
+
+```jsx
+<Checkbox.Group direction="horizontal">
+  {
+    ['a', 'b', 'c'].map((item) => {
+      return (
+        <Checkbox key={item} value={item}>复选框{item}</Checkbox>
+      )
+    })
+  }
+</Checkbox.Group>
+```
+
+### 复选框组自定义形状
+
+通过shape属性控制复选框组的形状。
+
+<Image src="/imgs/checkbox/shape.jpg" />
+
+```jsx
+<Checkbox.Group shape="round">
+  {
+    ['a', 'b', 'c'].map((item) => {
+      return (
+        <Checkbox key={item} value={item}>复选框{item}</Checkbox>
+      )
+    })
+  }
+</Checkbox.Group>
+```
+
+### 复选框组禁用
+
+通过disabled属性来控制是否是禁用状态。
+
+<Image src="/imgs/checkbox/disabled.jpg" />
+
+```jsx
+<Checkbox.Group defaultValue={['a', 'b']} disabled>
+  {
+    ['a', 'b', 'c'].map((item) => {
+      return (
+        <Checkbox key={item} value={item}>复选框{item}</Checkbox>
+      )
+    })
+  }
+</Checkbox.Group>
+```
+
+### 搭配单元格组件使用
+
+<Image src="/imgs/checkbox/group.jpg" />
+
+```jsx
+<Checkbox.Group>
+  <CellGroup>
+    <Cell 
+      title="复选框a"
+      rightIcon={
+        <Checkbox value="a" />
+      }
+      clickable
+    />
+
+    <Cell 
+      title="复选框b"
+      data-value="b"
+      rightIcon={
+        <Checkbox value="b" />
+      }
+      clickable
+    />
+  </CellGroup>
+</Checkbox.Group>
+```
+
+## API
+
+### CheckboxGroup Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| value | 当前复选框组的选中值列表	| _Array_ | - |
+| direction | 复选框组的排列方向，可选值为horizontal \| vertical	| _string_ | `vertical` |
+| shape | 复选框组的形状，可选值为round \| square | _string_ | `square` |
+| disabled | 是否禁用复选框组	 | _boolean_ | `false` |
+</div>
+
+### Checkbox Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| value | 复选框的值	| _string_ \| _number_ | - |
+| shape | 复选框的形状, 可选值为round \| square	| _string_ | `square` |
+| defaultChecked | 默认是否选中	| _boolean_ | `false` |
+| checked | 是否已选中	| _boolean_ | `false` |
+| disabled | 是否禁用		| _boolean_ | `false` |
+| labelPosition | 文本位置，可选值为 left	\| right	| _string_ | `right` |
+| labelDisabled | 是否禁用内容点击	| _boolean_ | `false` |
+| icon | 渲染自定义图标的函数 | _Function_ | - |
+</div>
+
+### CheckboxGroup Events
+
+<div class="table-container">
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onChange | 当绑定值变化时触发的事件	 | `当前组件的值` |
+</div>
+
+### Checkbox Events
+
+<div class="table-container">
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onChange | 当绑定值变化时触发的事件	 | `当前组件的值` |
+</div>
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-checkbox-margin-right | 复选框margin-right值 | `--czh-padding-sm` |
+| --czh-checkbox-size | 复选框大小 | `40px` |
+| --czh-checkbox-border-color | 复选框边框颜色 | `--czh-color-gray-5` |
+| --czh-checkbox-transition-duration | 动画时长 | `0.2s` |
+| --czh-checkbox-checked-icon-color | 选中状态颜色 | `--czh-color-blue` |
+| --czh-checkbox-disabled-icon-color | 禁用状态颜色 | `--czh-color-gray-5` |
+| --czh-checkbox-disabled-background-color | 禁用状态背景颜色 | `--czh-color-weak` |
+| --czh-checkbox-label-margin | label的margin值 | `20px` |
+| --czh-checkbox-label-color | label的字体颜色 | `--czh-color-text` |
+| --czh-checkbox-disabled-label-color | 禁用状态下label的字体颜色 | `--czh-color-gray-5` |
+</div>

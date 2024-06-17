@@ -1,0 +1,143 @@
+import Image from '../../components/image'
+
+# Switch 开关
+
+### 介绍
+
+用于在打开和关闭状态之间进行切换。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Switch } from 'czh-weapp'
+```
+
+### 基础用法
+
+Switch组件分为受控/不受控两种用法
+
+<Image src="/imgs/switch/basic.jpg" />
+
+```jsx
+// 不受控
+<Switch  />
+
+// 受控
+<Switch value={value} onChange={onChange} />
+```
+
+### 默认开启
+
+通过defaultValue属性控制默认开启/关闭
+
+<Image src="/imgs/switch/default.jpg" />
+
+```jsx
+<Switch defaultValue={true} />
+```
+
+### 禁用状态
+
+通过disabled属性控制是否是禁用状态。
+
+<Image src="/imgs/switch/disabled.jpg" />
+
+```jsx
+<Switch disabled />
+```
+
+### 加载状态
+
+通过disabled属性控制是否是加载状态。
+
+<Image src="/imgs/switch/loading.jpg" />
+
+```jsx
+<Switch defaultValue={true} loading />
+```
+
+### 自定义加载状态颜色
+
+通过className或者style设置css变量来自定义加载状态颜色。
+
+<Image src="/imgs/switch/custom-loading.jpg" />
+
+```jsx
+<Switch 
+  defaultValue={true} 
+  style={{
+    '--czh-loading-actived-color': '#ee0a24'
+  }}
+  loading 
+/>
+```
+
+### 自定义大小
+
+通过className或者style设置css变量来自定义大小或者背景颜色。
+
+<Image src="/imgs/switch/size.jpg" />
+
+<Image src="/imgs/switch/color.jpg" />
+
+```jsx
+import style from './custom.module.scss'
+
+<Switch className={style.customSize} />
+<Switch className={style.customColor} />
+```
+
+```scss title="custom.module.scss"
+.customSize {
+  --czh-switch-font-size: 36px;
+}
+
+.customColor {
+  --czh-switch-background-color: #ee0a24;
+  --czh-switch-on-background-color: #07c160;
+}
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| value | 在表单内提交时的值 | _string_ \| _number_ | - |
+| defaultValue | 默认值 | _string_ \| _number_ | - |
+| loading | 是否为加载状态 | _boolean_ | `false` |
+| disabled | 是否为禁用状态 | _boolean_ | `false` |
+| activeValue | 开启状态的值 | _boolean_ \| _string_ \| _number_  | `true` |
+| inactiveValue | 关闭状态的值 | _boolean_ \| _string_ \| _number_  | `false` |
+</div>
+
+### Events
+
+<div class="table-container">
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onChange | 开关状态切换回调	 | `当前值` |
+</div>
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-switch-witdh | 宽度 | `2em` |
+| --czh-switch-height | 高度 | `1em` |
+| --czh-switch-font-size | 字体大小 | `60px` |
+| --czh-switch-backgroud-color | 背景颜色 | `--czh-color-white` |
+| --czh-switch-border | 边框 | `1px solid rgba(0, 0, 0, 0.1)` |
+| --czh-switch-disabled-opacity | 禁用状态时的透明度 | `0.4` |
+| --czh-switch-transition-duration | 动画时长 | `0.3s` |
+| --czh-switch-node-size | 开关控制元素的大小 | `1em` |
+| --czh-switch-node-z-index | 开关控制元素的z-index | `1` |
+| --czh-switch-node-background-color | 开关控制元素的背景颜色 | `--czh-color-white` |
+| --czh-switch-loading-actived-color | 加载状态激活时的颜色 | `#1989fa` |
+| --czh-switch-loading-inactived-color | 加载状态未激活时的颜色 | `#969799` |
+</div>

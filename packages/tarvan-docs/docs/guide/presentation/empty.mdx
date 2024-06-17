@@ -1,0 +1,90 @@
+import Image from '../../components/image'
+
+# Empty 空状态
+
+### 介绍
+
+空状态时的占位提示。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Empty } from 'czh-weapp'
+```
+
+<Image src="/imgs/empty/basic.jpg" />
+
+```jsx
+<Empty description="描述文字" />
+```
+
+### 图片类型
+
+Empty 组件内置了多种占位图片类型，可以在不同业务场景下使用。
+
+<Image src="/imgs/empty/type.jpg" />
+
+```jsx
+<Empty image="error" description="通用错误" />
+<Empty image="network" description="网络错误" />
+<Empty image="search" description="搜索提示" />
+```
+
+### 自定义图片
+
+需要自定义图片时，可以在 image 属性中传入任意图片 URL。
+
+<Image src="/imgs/empty/custom.jpg" />
+
+```jsx
+<Empty 
+  image="https://img.yzcdn.cn/vant/custom-empty-image.png" 
+  description="描述文字" 
+/>
+```
+
+### 底部内容
+
+通过children可以在 Empty 组件的下方插入内容。
+
+<Image src="/imgs/empty/bottom.jpg" />
+
+```jsx
+<Empty description="描述文字">
+  <Button 
+    type="danger" 
+    round
+  >底部按钮</Button>
+</Empty>
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| image | 图片类型，可选值为 default \| error \| network \| search，支持传入图片 URL	 | _string_ | `default` |
+| description | 图片下方的描述文字	 | _string_ \| _ReactElement_ | - |
+</div>
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-empty-padding-v | 上下padding | `--czh-padding-xl` |
+| --czh-empty-padding-h | 左右padding | `0` |
+| --czh-empty-image-width | 图片宽度 | `120px` |
+| --czh-empty-image-height | 图片高度 | `120px` |
+| --czh-empty-description-margin-top | 描述内容的margin-top | `--czh-padding-md` |
+| --czh-empty-description-vertical-padding | 描述内容的上下padding | `0` |
+| --czh-empty-description-horizontal-padding | 描述内容的左右padding | `120px` |
+| --czh-empty-description-color | 描述内容的字体颜色 | `--czh-color-gray-6` |
+| --czh-empty-description-font-size | 描述内容的字体大小 | `--czh-font-size-md` |
+| --czh-empty-description-line-height | 描述内容的行高| `40px` |
+| --czh-empty-bottom-margin-top | 底部内容的margin-top | `48px` |
+</div>

@@ -1,0 +1,32 @@
+[
+  {
+    "type": "file",
+    "name": "field",
+    "label": "Field 输入框"
+  },
+  {
+    "type": "file",
+    "name": "radio",
+    "label": "Radio 单选框"
+  },
+  {
+    "type": "file",
+    "name": "checkbox",
+    "label": "Checkbox 复选框"
+  },
+  {
+    "type": "file",
+    "name": "switch",
+    "label": "Switch 开关"
+  },
+  {
+    "type": "file",
+    "name": "search",
+    "label": "Search 搜索"
+  },
+  {
+    "type": "file",
+    "name": "uploader",
+    "label": "Uploader 文件上传"
+  }
+]

@@ -1,0 +1,159 @@
+import Image from '../../components/image'
+
+# Layout布局
+
+### 介绍
+
+Layout 提供了row和col两个组件来进行行列布局。
+
+### 基础用法
+
+### 引入
+
+```jsx
+import { Row, Col } from 'czh-weapp'
+```
+
+<Image src="/imgs/layout/basic.jpg" />
+
+```jsx
+<Row align="stretch">
+	<Col span="8">span: 8</Col>
+	<Col span="8">span: 8</Col>
+	<Col span="8">span: 8</Col>
+</Row>
+
+<Row>
+	<Col span="4">span: 4</Col>
+	<Col span="10" offset="4">offset: 4, span: 10</Col>
+</Row>
+
+<Row>
+	<Col span="12" offset="12">offset: 12, span: 12</Col>	
+</Row>
+```
+
+### 设置列元素间距
+
+通过className或者style属性在行上改变colum-gap来设置列之间的间距。
+
+<Image src="/imgs/layout/gutter.jpg" />
+
+```jsx
+import style from './layout.module.scss'
+
+<Row style={style.row}>
+	<Col 
+		span="8" 
+	>span: 8</Col>
+
+	<Col 
+		span="8" 
+	>span: 8</Col>
+
+	<Col 
+		span="8" 
+	>span: 8</Col>	
+</Row>
+```
+
+```scss title="layout.module.scss"
+.row {
+	column-gap: 10px;
+}
+```
+
+### 行对齐方式
+
+通过Row组件上的justify以及align属性来控制行对齐方式。
+
+<Image src="/imgs/layout/row-align.jpg" />
+
+``` jsx
+<Row 
+	justify="end" 
+	align="stretch" 
+>
+	<Col span="8" >start</Col>
+
+	<Col span="8">start</Col>
+</Row>
+```
+
+### 列交叉轴对齐方式
+
+通过Col组件上的align属性来控制列交叉轴上的对齐方式。
+
+<Image src="/imgs/layout/col-align.jpg" />
+
+``` jsx
+<Row 
+	justify="start" 
+	align="stretch" 
+>
+	<Col 
+		span="8" 
+		align="start"
+	>start</Col>
+
+	<Col 
+		span="8" 
+		align="center"
+	>center</Col>	
+
+	<Col 
+		span="8" 
+		align="end"
+	>end</Col>
+</Row>
+```
+
+### 列主轴对齐方式
+
+通过Col组件上的justify属性来控制列主轴上的对齐方式。
+
+<Image src="/imgs/layout/col-main.jpg" />
+
+``` jsx
+<Row 
+	justify="start" 
+	align="stretch" 
+>
+	<Col 
+		span="8" 
+		justify="start"
+	>start</Col>
+
+	<Col 
+		span="8" 
+		justify="center"
+	>center</Col>
+
+	<Col 
+		span="8" 
+		justify="end"
+	>end</Col>
+</Row>	
+```
+
+## API
+
+### Row Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| justify | 主轴上的对齐方式 | _string_ | - |
+| align | 交叉轴上的对齐方式 | _string_ | - |
+</div>
+
+### Col Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| span | 列元素宽度	 | _string_ \| _number_  | - |
+| offset | 列元素偏移距离		 | _string_ \| _number_  | - |
+| justify | 主轴上的对齐方式 | _string_ | - |
+| align | 交叉轴上的对齐方式 | _string_ | - |
+</div>

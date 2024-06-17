@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "outDir": "dist",
+    "jsx": "react",
+    "target": "ES6",
+    "sourceMap": true, 
+    "allowJs": true, 
+    "strict": true, 
+    "noImplicitAny": false,
+    "noUnusedLocals": true, 
+    "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "removeComments": true, 
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "noEmit": false,
+    "lib": ["ES2016"],
+    "types": [
+      "node"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  },
+  "include": [
+    "packages/tarvan-ui/src/*.ts",
+    "packages/tarvan-ui/src/*.tsx",
+    "typings.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

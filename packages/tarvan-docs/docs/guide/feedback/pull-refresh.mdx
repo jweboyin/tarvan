@@ -1,0 +1,110 @@
+import Image from '../../components/image'
+
+# 下拉刷新
+
+## 介绍
+
+用于下拉重新加载的场景，比如列表的下拉刷新
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { PullRefresh } from 'czh-weapp'
+```
+
+### 基础用法
+
+<Image src="/imgs/pull-refresh/basic.jpg" />
+
+<Image src="/imgs/pull-refresh/loading.jpg" />
+
+<Image src="/imgs/pull-refresh/count.jpg" />
+
+```jsx
+import { useState } from 'react'
+import { usePageScroll } from '@tarojs/taro'
+import { useMemoizedFn } from 'ahooks'
+
+const [loading, setLoading] = useState(false)
+const [counter, setCounter] = useState(0)
+const [reachTop, setReachTop] = useState(true)
+
+const onRefresh = useMemoizedFn(() => {
+  setLoading(true)
+  setTimeout(() => {
+    setCounter(counter + 1)
+    setLoading(false)
+  }, 1000) 
+})
+
+usePageScroll(({ scrollTop }) => setReachTop(scrollTop === 0))
+
+return (
+	<PullRefresh
+		loading={loading}
+		reachTop={reachTop}
+		onRefresh={onRefresh}
+	>
+		<view>{counter ? "刷新次数：" + counter : "下拉试试"}</view>
+	</PullRefresh>
+)
+```
+
+### 自定义提示
+
+<Image src="/imgs/pull-refresh/custom.jpg" />
+
+```jsx
+return (
+	<PullRefresh
+		loadingText="玩命加载中.."
+		pullingText="下拉可以刷新哦~"
+		releasingText="释放就可加载.."
+		completedText="已刷新成功~"
+	>
+		<view>{counter ? "刷新次数：" + counter : "下拉试试"}</view>
+	</PullRefresh>
+)	
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数        | 说明         | 类型   |  默认值      |
+| ----------- | ------------| ----- | ----------- |
+| loading |  是否处于加载状态 | _boolean_ | - |
+| duration | 动画时长 | _number_ \| _string_ | `300` |
+| headHeight | 顶部内容高度 | _number_ \| _string_ | `50` |
+| reachTop | 是否处于顶部 | _boolean_ | `true` |
+| pullDistance | 触发下拉刷新的距离 | _number_ \| _string_ | `与 headHeight 一致` |
+| disabled | 是否禁用下拉刷新 | _boolean_ | `false` |
+| pullingText | 下拉的提示文案 | _string_ | `下拉即可刷新...` |
+| releasingText | 下拉的提示文案 | _string_ | `下拉即可刷新...` |
+| loadingText | 刷新时的提示文案 | _string_ | `加载中...` |
+| completeText | 完成时的提示文案 | _string_ | `刷新成功` |
+| renderText | 自定义提示文案渲染函数 | _function_ | - |
+| onRefresh | 下拉刷新时触发	 | _function_ | - |
+</div>
+
+### Events
+
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onRefresh | 下拉刷新处理函数 | - |
+
+### 样式变量
+
+<div class="table-container">
+| 参数               | 说明     | 默认值                    |
+| ------------------ | -------- | ------------------------- | 
+| --czh-pull-refresh-head-height     | 顶部高度 | `100px`   | 
+| --czh-pull-refresh-head-line-height | 顶部行高 | `100px`  | 
+| --czh-pull-refresh-head-font-size | 顶部字体大小 | `28px`  |
+| --czh-pull-refresh-head-color | 顶部字体颜色 | `#969799`  |
+| --czh-pull-refresh-loading-icon-width | 正在加载图标宽度 | `32px`  | 
+| --czh-pull-refresh-loading-icon-height | 正在加载图标高度 | `32px`  | 
+</div>

@@ -1,0 +1,107 @@
+import Image from '../../components/image'
+
+# Skeleton 骨架屏
+
+### 介绍
+
+用于在内容加载过程中展示一组占位图形。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Skeleton } from 'czh-weapp'
+```
+
+### 行用法
+
+通过title属性显示标题占位图，通过row属性配置占位段落行数。
+
+<Image src="/imgs/skeleton/basic.jpg" />
+
+```jsx
+<Skeleton 
+  row={3} 
+  title 
+/>
+```
+
+### 列用法
+
+通过direction属性设为col来切换为列显示，通过col属性来设置列数。
+
+<Image src="/imgs/skeleton/col.jpg" />
+
+```jsx
+<Skeleton 
+  direction="col"
+  col={3} 
+  title
+/>
+```
+
+### 显示头像
+
+通过avatar属性显示头像占位图。
+
+<Image src="/imgs/skeleton/avatar.jpg" />
+
+```jsx
+<Skeleton 
+  row={3} 
+  avatar
+  title 
+/>	
+```
+
+### 展示子组件
+
+将loading属性设置成false表示内容加载完成，此时会隐藏占位图，并显示Skeleton的子组件。
+
+<Image src="/imgs/skeleton/child.jpg" />
+
+```jsx
+<Skeleton 
+  row={3} 
+  loading={false}
+  avatar
+  title 
+>	
+  <view>子组件内容</view>
+</Skeleton>
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| direction | 控制行列显示，可选值为 row \| col | _string_ | `row` |
+| row | 段落占位图行数 | _number_ | - |
+| col | 段落占位图列数	| _number_ | - |
+| title | 是否显示标题占位图		| _boolean_ | `false` |
+| avatar | 是否显示头像占位图			| _boolean_ | `false` |
+| loading | 是否显示占位图，传false时会展示子组件内容				| _boolean_ | `true` |
+| animate | 是否开启动画				| _boolean_ | `true` |
+| avatarShape | 头像占位图形状，可选值为square \| round	| _string_ | `round` |
+</div>
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-progress-height | 进度条height | `8px` |
+| --czh-progress-background-color | 进度条背景颜色 | `--czh-color-gray-3` |
+| --czh-progress-portion-color | 已完成部分进度条颜色 | `--czh-color-blue` |
+| --czh-progress-portion-inactive-color | 已完成部分进度条置灰后的颜色 | `#cacaca` |
+| --czh-progress-portion-transition-duration | 已完成部分进度条动画duration | `0.5s` |
+| --czh-progress-pivot-text-color | 进度文字颜色 | `--czh-color-white` |
+| --czh-progress-pivot-font-size | 进度文字大小 | `--czh-font-size-xs` |
+| --czh-progress-pivot-line-height | 进度文字行高 | `1.6` |
+| --czh-progress-pivot-background-color | 进度文字区域背景颜色 | `--czh-color-blue` |
+| --czh-progress-pivot-padding | 进度文字区域padding | `0 10px` |
+</div>

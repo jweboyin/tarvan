@@ -1,0 +1,118 @@
+import Image from '../../components/image'
+
+# IndexBar 索引栏 
+
+### 介绍
+
+用于列表的索引分类显示和快速定位。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { IndexBar } from 'czh-weapp'
+```
+
+### 基础用法
+
+点击索引栏时，会自动跳转到对应的锚点位置。
+
+<Image src="/imgs/index-bar/basic.jpg" />
+
+```jsx
+<IndexBar>
+	<IndexBar.Group index="A">
+		<Cell title="文本" />
+		<Cell title="文本" />
+		<Cell title="文本" />
+	</IndexBar.Group>
+
+	<IndexBar.Group index="B">
+		<Cell title="文本" />
+		<Cell title="文本" />
+		<Cell title="文本" />
+	</IndexBar.Group>
+
+	<IndexBar.Group index="C">
+		<Cell title="文本" />
+		<Cell title="文本" />
+		<Cell title="文本" />
+	</IndexBar.Group>
+
+	...
+</IndexBar>
+```
+
+### 开启延迟渲染
+
+通过lazyRender属性开始延迟渲染，优化长列表性能
+
+```jsx
+<IndexBar lazyRender>
+	....
+</IndexBar>
+```
+
+### 自定义侧边栏索引项样式
+
+通过className或style属性设置css变量来控制索引项的样式。具体支持的样式变量请看下列对应的文档。
+
+<Image src="/imgs/index-bar/custom.jpg" />
+
+```jsx
+<IndexBar 
+	style={{
+		'--czh-index-bar-index-highlight-color': '#FFFFFF',
+		'--czh-index-bar-index-highlight-background-color': '#07c160'
+	}}
+>
+	....
+</IndexBar>
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| sticky | 是否开启锚点自动吸顶	 | _boolean_ | `true` |
+| stickyOffsetTop | 锚点自动吸顶时与顶部的距离	 | _number_ | `0` |
+| safeAreaBottom | 是否开启底部安全区域 | _boolean_ | `true` |
+| showBackOffsetTop | 是否显示返回顶部按钮 | _boolean_ | `true` |
+| disableSidebar | 是否禁用侧边栏 | _boolean_ | `false` |
+| lazyRender | 是否开启延迟渲染, 优化长列表渲染性能 | _boolean_ | `false` |
+| scrollDuration | 滚动动画时长, 毫秒 | _number_ | `100` |
+</div>
+
+### Events
+
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onSelect | 选中字符时触发		 | index: 索引字符 |
+
+### 样式变量
+
+<div class="table-container">
+| 属性 | 说明 | 默认值 | 全局变量 |
+| --- | --- | --- | --- |
+| --czh-index-bar-index-right | 侧边栏的right定位 | `16px` |
+| --czh-index-bar-index-pading | 侧边栏索引项的padding | `6px 8px` |
+| --czh-index-bar-index-font-weight | 侧边栏索引项的字体粗细程度 | `500` |
+| --czh-index-bar-index-font-size | 侧边栏索引项的字体大小 | `--czh-font-size-sm` |
+| --czh-index-bar-index-line-height | 侧边栏索引项的行高 | `28px` |
+| --czh-index-bar-index-highlight-color | 侧边栏选中状态索引项的字体颜色 | `--czh-color-white` |
+| --czh-index-bar-index-highlight-background-color | 侧边栏选中状态索引项的背景颜色| `--czh-color-block` |
+| --czh-index-bar-index-zindex | 侧边栏索引项的z-index | `1` |
+| --czh-index-bar-sticky-zindex | 吸顶锚点标题栏的z-index | `1` |
+| --czh-index-bar-anchor-padding | 锚点标题栏的padding | `--czh-padding-md` |
+| --czh-index-bar-anchor-text-color | 锚点标题栏的字体颜色 | `--czh-color-text` |
+| --czh-index-bar-anchor-font-size | 锚点标题栏的字体大小 | `--czh-font-size-md` |
+| --czh-index-bar-anchor-line-height | 锚点标题栏的行高 | `64px` |
+| --czh-index-bar-anchor-font-weight| 锚点标题栏中时的字体粗细程度 | `500` |
+| --czh-index-bar-anchor-actived-text-color | 锚点标题栏选中时的字体颜色 | `--czh-color-black` |
+| --czh-index-bar-anchor-background-color | 锚点标题栏的背景颜色 | `--czh-color-gray-1` |
+| --czh-index-bar-anchor-actived-background-color | 锚点标题栏选中时的背景颜色 | `--czh-color-gray-1` |
+</div>

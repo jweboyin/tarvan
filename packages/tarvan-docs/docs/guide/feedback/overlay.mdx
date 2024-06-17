@@ -1,0 +1,81 @@
+import Image from '../../components/image'
+
+# Overlay 遮罩层
+
+### 介绍
+
+创建一个遮罩层，用于强调特定的页面元素，并阻止用户进行其他操作。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Overlay } from 'czh-weapp'
+```
+
+### 基础用法
+
+```jsx
+<Overlay 
+  show 
+/>
+```
+
+### 嵌潜入内容
+
+通过children可以在遮罩层上嵌入任意内容。
+
+<Image src="/imgs/overlay/inner.jpg" />
+
+```jsx
+import style from 'overlay.module.scss'
+
+<Overlay show>
+  <view className={style.wrapper} catchMove>
+    <view className={style.block} />
+  </view>
+</Overlay>
+```
+
+```scss title="overlay.module.scss"
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.block {
+  width: 240px;
+  height: 240px;
+  background-color: #fff;
+}
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| show | 是否展示遮罩层				 | _boolean_ | `false` |
+| duration | 动画时长，单位秒				 | _number_ | `0.3` |
+| zIndex | z-index 层级				 | _number_ | `1` |
+| lockScroll | 是否锁定背景滚动，锁定时蒙层里的内容也将无法滚动			 | _boolean_ | `true` |
+</div>
+
+### Events
+
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onClick | 点击时触发	 | - |
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-overlay-background-color | 遮罩层背景颜色 | `rgba(0, 0, 0, 0.7)` |
+</div>

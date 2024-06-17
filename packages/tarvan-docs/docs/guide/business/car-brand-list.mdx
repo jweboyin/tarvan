@@ -1,0 +1,103 @@
+import Image from '../../components/image'
+
+# CarBrandList 车辆品牌列表
+
+### 介绍
+
+用于显示一个车辆品牌列表。 
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { CarBrandList } from 'czh-weapp'
+```
+
+### 基础用法
+
+<Image src="/imgs/car-brand-list/basic.jpg" />
+
+```jsx
+<CarBrandList />
+```
+
+### 自定义品牌图标大小
+
+通过className或者style属性改变css变量来自定义品牌图标大小。
+
+<Image src="/imgs/car-brand-list/custom-icon.jpg" />
+
+```jsx
+<CarBrandList 
+  style={{
+    '--czh-car-brand-index-bar-item-icon-width': '30px',
+    '--czh-car-brand-index-bar-item-icon-height': '30px'
+  }}
+/>
+```
+
+### 自定义品牌字体颜色
+
+通过className或者style属性改变css变量来自定义品牌字体颜色。
+
+<Image src="/imgs/car-brand-list/color.jpg" />
+
+```jsx
+<CarBrandList 
+  style={{
+   '--czh-car-brand-index-bar-item-color': '#00b578',
+  }}
+/>
+```
+
+### 点击品牌
+
+通过onSelected属性来处理点击品牌事件，参数为车辆品牌ID。
+
+<Image src="/imgs/car-brand-list/selected.jpg" />
+
+```jsx
+import Taro from '@tarojs/taro'
+import { useMemoizedFn } from 'ahooks'
+
+const onSelected = useMemoizedFn((brandId) => {
+  Taro.showToast({
+    title: `选中的车辆品牌ID: ${brandId}`,
+    icon: 'none',
+    duration: 3000
+  })
+})
+
+ <CarBrandList onSelected={onSelected} />
+```
+
+### 
+
+## API
+
+### Events
+
+<div class="table-container">
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onSelected | 点击车辆品牌项触发 | `brandId` |
+</div>
+
+
+### 样式变量
+
+<div class="table-container">
+| 属性               | 说明     | 默认值                    | 
+| ------------------ | -------- | ------------------------- |
+| --czh-car-brand-index-bar-item-color    | 品牌项字体颜色 | `#1F2129`  |     
+| --czh-car-brand-index-bar-item-font-size    | 品牌项字体大小 | `--czh-font-size-lg` |     
+| --czh-car-brand-index-bar-item-padding    | 品牌项padding值 | `32px 32px`  |     
+| --czh-car-brand-index-bar-item-hover-background-color | 品牌项点击时的背景颜色 | `#f7f8fa` |     
+| --czh-car-brand-index-bar-item-icon-width | 品牌项图标宽度 | `48px` |     
+| --czh-car-brand-index-bar-item-icon-height | 品牌项图标高度 | `48px` |     
+| --czh-car-brand-index-bar-item-icon-margin-right | 品牌项图标margin-right值 | `30px` |     
+| --czh-car-brand-index-bar-anchor-background | 分组标题项背景 | `linear-gradient(to right, #f7f8fc, #ffffff)	` |     
+| --czh-car-brand-index-bar-sidebar-index-active-color | 侧边索引栏激活项字体颜色 | `#ffffff` |     
+| --czh-car-brand-index-bar-sidebar-index-active-background | 侧边索引栏激活项背景颜色 | `#1F2129` |     
+</div>

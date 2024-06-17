@@ -1,0 +1,203 @@
+import { Grid } from '@arco-design/web-react'
+import Image from '../../components/image'
+import IconGridItem from '../../components/icon-grid-item'
+import DocSpace from '../../components/doc-space'
+import DocIcon from '../../components/doc-icon'
+
+# 图标 
+
+### 介绍
+
+用于显示图标, 既支持字体类型，也支持图片类型。
+
+- 对于字体类型，托管在iconfont上面的公用图标库`czh-common-icon`
+- 对于图片类型，托管在oss的`9daye-icon/imgs`文件夹中。
+
+### 字体类图标
+<DocSpace block wrap>
+	{
+		[
+			'replay', 'comment-o', 'ellipsis', 'closed-eye', 'description', 'wap-nav',
+			'product-choose', 'lock', 'exit', 'fenxiang', 'setting-o', 'setting-fill',
+			'setting', 'download', 'mobilefill', 'phone', 'wechat', 'clear', 
+			'add-o', 'down', 'blue-cancel', 'calendar', 'caret-right', 'caret-left',
+			'contact', 'edit', 'shop-o', 'circle', 'checked', 'photo',
+			'arrow-up', 'arrow-down', 'Import', 'success', 'photo-fail', 'upgrade',
+			'del', 'close', 'search', 'cross', 'arrow', 'delete-o', 'plus',
+			'arrow-left', 'wap-home-o', 'play', 'caret-down', 'caret-up'
+		].map((icon) => {
+			return (
+				<IconGridItem 
+					type="font"
+					key={icon}
+					icon={icon}
+				/>
+			)
+		})
+	}
+</DocSpace>
+### 图片类图标
+
+<DocSpace block wrap>
+	{
+		[
+			'wuxing', 'arrow', 'blue-bell', 'book-list', 'book', 'card',
+			'circle-hat', 'circle-minus', 'close', 'diamond', 'download',
+			'downside', 'edit', 'fan-screen', 'gray-card', 'gray-hat', 'gray-line',
+			'gray-order', 'green-book-card', 'grid', 'hat', 'jiayou', 'light-hat',
+			'light-store', 'lighting-screen-fill', 'lighting-screen-outline', 'lightning',
+			'list', 'location', 'order', 'print', 'red-flower', 'scan', 
+			'share-case-blue', 'share-case-gray', 'show-more-case-blue', 'sight', 'start',
+			'store', 'success', 'upsale', 'view-case-circle-blue',
+			'wx-pay', 'addr-list-icon', 'green-cart',
+			'pending-box', 'pending-card', 'car', 'close-book'
+		].map((icon) => {
+			return (
+				<IconGridItem 
+					type="img"
+					key={icon}
+					icon={icon}
+				/>
+			)
+		})
+	}
+</DocSpace>
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Icon } from 'czh-weapp'
+```
+
+### 基础用法
+
+Icon的name属性支持传入字体类图标名称，图片文件名，图片链接。
+
+<Image src="/imgs/icon/basic.jpg" />
+
+```jsx
+<Icon name="arrow" />
+<Icon name="location.png" />
+<Icon name="https://9daye-icon.oss-cn-shanghai.aliyuncs.com/icons/success.png" />
+```
+
+### 图标颜色
+
+通过设置css变量`--czh-icon-color`来控制图标颜色
+
+<Image src="/imgs/icon/color.jpg" />
+
+```jsx
+<Icon 
+	name="comment-o" 
+/>
+
+<Icon 
+	name="comment-o" 
+	style={{
+		'--czh-icon-color': '#1989fa'
+	}}
+/>
+```
+
+### 图标大小
+
+通过设置css变量`--czh-icon-size` 来控制图标大小。
+
+<Image src="/imgs/icon/size.jpg" />
+
+```jsx
+<Icon 
+	name="lock" 
+	style={{
+		'--czh-icon-size': '36px'
+	}}
+/>
+
+<Icon 
+	name="lock" 
+	style={{
+		'--czh-icon-size': '55px'
+	}}
+/>
+```
+
+### 提示信息
+
+设置dot属性后，会在图标右上角展示一个小红点。设置info属性后，会在图标右上角展示相应的徽标。
+
+<Image src="/imgs/icon/info.jpg" />
+
+```jsx
+<Icon 
+	name="lock" 
+	dot
+/>
+
+<Icon 
+	name="lock" 
+	info={9}
+/>
+
+<Icon 
+	name="lock" 
+	info="99+"
+/>
+```
+
+### 自定义图标
+
+如果需要在现有 Icon 的基础上使用更多图标，可以引入第三方 iconfont 对应的字体文件和 CSS 文件，之后就可以在 Icon 组件中直接使用。
+
+```css
+/* 引入第三方或自定义的字体图标样式 */
+@font-face {
+  font-family: 'my-icon';
+  src: url('./my-icon.ttf') format('truetype');
+}
+
+.my-icon {
+  font-family: 'my-icon';
+}
+
+.my-icon-extra::before {
+  content: '\e626';
+}
+```
+
+```jsx
+<!-- 通过 classPrefix 指定类名为 my-icon -->
+<Icon classPrefix="my-icon" name="extra" />
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| name | 图标名称 ｜ 图片文件名 ｜ 图片链接  | _string_ | - |
+| dot  | 是否显示图标右上角小红点 | _boolean_ | `false` |
+| info | 图标右上角文字提示 | _string_ | - |
+| classPrefix | 图标类名前缀 | _string_ | `czh-icon` |
+</div>
+
+### Events
+
+<div class="table-container">
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onClick | 点击图标时触发	 | - |
+</div>
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-icon-size | 图标的字体大小 | `36px` |
+| --czh-icon-color | 图标颜色 | `#323233` |
+</div>

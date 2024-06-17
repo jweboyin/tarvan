@@ -1,0 +1,185 @@
+import Image from '../../components/image'
+
+# Space 间距
+
+### 介绍
+
+Flexbox布局，并设置元素之间的间距。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Space } from 'czh-weapp'
+```
+
+### 基础用法
+
+Space 组件会在各个子组件之间设置一定的间距，默认间距为 16px。
+
+<Image src="/imgs/space/basic.jpg" />
+
+```html
+<Space>
+    <Button>按钮</Button>
+    <Button>按钮</Button>
+    <Button>按钮</Button>
+    <Button>按钮</Button>
+</Space>
+```
+
+
+### 垂直排列
+
+可以设置垂直方向排列，将 direction 属性设置为 vertical即可。
+
+<Image src="/imgs/space/vertical.jpg" />
+
+```html
+<Space direction="vertical">
+    <Button>按钮</Button>
+    <Button type="primary">按钮</Button>
+    <Button type="info">按钮</Button>
+    <Button type="danger">按钮</Button>
+</Space>
+```
+
+### 自动换行
+
+在水平模式下, 通过 wrap 属性来控制子元素是否自动换行。
+
+<Image src="/imgs/space/wrap.jpg" />
+
+```html
+<Space wrap>
+    <Button>按钮</Button>
+    <Button type="primary">按钮</Button>
+    <Button type="info">按钮</Button>
+    <Button type="danger">按钮</Button>
+    <Button>按钮</Button>
+    <Button type="primary">按钮</Button>
+    <Button type="info">按钮</Button>
+    <Button type="danger">按钮</Button>
+</Space>
+```
+
+### 自定义间距
+
+通过设置css变量可以设置主轴与交叉轴上元素之间的间距。
+
+<Image src="/imgs/space/gap.jpg" />
+
+```html
+<Space className={style.gap} wrap>
+    <Button>按钮</Button>
+    <Button type="primary">按钮</Button>
+    <Button type="info">按钮</Button>
+    <Button type="danger">按钮</Button>
+    <Button>按钮</Button>
+    <Button type="primary">按钮</Button>
+    <Button type="info">按钮</Button>
+    <Button type="danger">按钮</Button>
+</Space>
+
+```
+
+```css
+.gap {
+    --czh-space-gap-horizontal: 60px;
+    --czh-space-gap-vertical: 5px;
+}
+```
+
+### 设为块级元素
+
+通过block属性来控制Space是否是一个块级元素，填充满整个父元素
+
+<Image src="/imgs/space/block.jpg" />
+
+```html
+<Space direction="vertical" block>
+    <Button block>按钮</Button>
+    <Button type="primary" block>按钮</Button>
+    <Button type="info" block>按钮</Button>
+    <Button type="danger" block>按钮</Button>
+</Space>
+```
+
+### 主轴对齐方式
+
+通过调整justify的值来设置子元素在主轴上的对齐方式, 可选值为 start, center, end, between，around, evenly。
+
+<Image src="/imgs/space/justify.jpg" />
+
+```html
+<Space 
+    justify="start" 
+    block
+>
+    <Button>按钮</Button>
+    <Button type="primary">按钮</Button>
+    <Button type="info">按钮</Button>
+    <Button type="danger">按钮</Button>
+</Space>
+```
+
+### 交叉轴对齐方式
+
+通过调整align的值来设置子元素在交叉轴上的对齐方式, 可选值为 start, center, end, baseline, stretch。
+
+<Image src="/imgs/space/align.jpg" />
+
+```html
+ <Space 
+    align="stretch"
+    block
+>
+    <div>按钮</div>
+    <Button type="primary" className={style.large}>按钮</Button>
+    <Button type="info">按钮</Button>
+    <Button type="danger">按钮</Button>
+</Space>
+
+ <Space 
+    align="center"
+    block
+>
+    <Button>按钮</Button>
+    <Button type="primary" className={style.large}>按钮</Button>
+    <Button type="info">按钮</Button>
+    <Button type="danger">按钮</Button>
+</Space>
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| direction | 间距方向 | `vertical ｜ horizontal` | `horizontal` |
+| justify | 主轴对齐方式 | `start ｜ end ｜ center ｜ between ｜ around ｜ evenly` | `-` |
+| align | 交叉轴对齐方式 | `start ｜ end ｜ center ｜ baseline ｜stretch` | `-` |
+| wrap | 是否自动换行，仅在 horizontal 时有效 | `boolean` | `false` |
+| block | 是否设置为块级元素 | `boolean` | `false` |
+</div>
+
+
+### Events
+
+<div class="table-container">
+| 事件名 | 说明 | 回调参数 | 
+| --- | --- | --- |
+| onClick | 点击时触发 | `(e: Event) => void` |
+</div>
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| `--czh-space-gap-horizontal` | 元素在主轴上的间距 | `16px` |
+| `--czh-space-gap-vertical` | 元素在交叉轴上的间距 | `16px` |
+</div>

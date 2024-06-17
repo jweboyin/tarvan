@@ -1,0 +1,73 @@
+@import './functions/util.scss';
+@import './variables.scss';
+
+page {
+	// Color Palette
+	--#{$prefix}-color-black: #000000;
+  --#{$prefix}-color-white: #ffffff;
+	--#{$prefix}-color-gray-1: #f7f8fa;
+	--#{$prefix}-color-gray-2: #f2f3f5;
+	--#{$prefix}-color-gray-3: #ebedf0;
+	--#{$prefix}-color-gray-4: #dcdee0;
+	--#{$prefix}-color-gray-5: #c8c9cc;
+	--#{$prefix}-color-gray-6: #969799;
+	--#{$prefix}-color-gray-7: #646566;
+	--#{$prefix}-color-gray-8: #323233;
+	--#{$prefix}-color-red: #ee0a24;
+	--#{$prefix}-color-blue: #1989fa;
+	--#{$prefix}-color-orange: #ff976a;
+	--#{$prefix}-color-orange-dark: #ed6a0c;
+	--#{$prefix}-color-orange-light: #fffbe8;
+	--#{$prefix}-color-green: #07c160;
+
+	// Gradient Colors
+	--#{$prefix}-color-gradient-red: linear-gradient(to right, #ff6034, #ee0a24);
+	--#{$prefix}-color-gradient-orange: linear-gradient(to right, #ffd01e, #ff8917);
+
+	// Component Colors
+  --#{$prefix}-color-text: #{var(--#{$prefix}-color-gray-8)};
+	--#{$prefix}-color-active: #{var(--#{$prefix}-color-gray-2)};
+	--#{$prefix}-color-active-opacity: 0.7;
+	--#{$prefix}-color-disabled-opacity: 0.5;
+	--#{$prefix}-color-background: #{var(--#{$prefix}-color-gray-1)};
+	--#{$prefix}-color-background-light: #fafafa;
+	--#{$prefix}-color-text-link: #576b95;
+
+	// Type Colors
+  --#{$prefix}-color-primary: #1677ff;
+  --#{$prefix}-color-success: #00b578;
+  --#{$prefix}-color-warning: #ff8f1f;
+  --#{$prefix}-color-danger: #ff3141;
+  --#{$prefix}-color-weak: #999999;
+  --#{$prefix}-color-light: #cccccc;
+
+	// Font
+  --#{$prefix}-font-family: -apple-system, blinkmacsystemfont, 'Helvetica Neue',
+    helvetica, segoe ui, arial, roboto, 'PingFang SC', 'miui',
+    'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+  --#{$prefix}-font-size: #{calculate(13px)};
+	--#{$prefix}-font-size-xs: #{calculate(10px)};
+	--#{$prefix}-font-size-sm: #{calculate(12px)};
+	--#{$prefix}-font-size-md: #{calculate(14px)};
+	--#{$prefix}-font-size-lg: #{calculate(16px)};
+	--#{$prefix}-font-weight-bold: 500;
+
+	// Animation
+	--#{$prefix}-animation-duration-base: 0.3s;
+	--#{$prefix}-animation-duration-fast: 0.2s;
+
+	// Padding
+	--#{$prefix}-padding-base: #{calculate(4px)};
+	--#{$prefix}-padding-xs: #{calculate(8px)}; 
+	--#{$prefix}-padding-sm: #{calculate(12px)};
+	--#{$prefix}-padding-md: #{calculate(16px)};
+	--#{$prefix}-padding-lg: #{calculate(24px)};
+	--#{$prefix}-padding-xl: #{calculate(32px)};
+
+	// Border
+	--#{$prefix}-border-color: #eeeeee;
+	--#{$prefix}-border-radius-sm: #{calculate(2px)};
+	--#{$prefix}-border-radius-md: #{calculate(4px)};
+	--#{$prefix}-border-radius-lg: #{calculate(8px)};
+	--#{$prefix}-border-radius-max: #{calculate(999px)};
+}

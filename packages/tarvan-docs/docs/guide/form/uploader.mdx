@@ -1,0 +1,295 @@
+import Image from '../../components/image'
+
+# Uploader 文件上传
+
+### 介绍
+
+用于将本地的图片或文件上传至服务器，并在上传过程中展示预览图和上传进度。目前 Uploader 组件不包含将文件上传至服务器的接口逻辑，该步骤需要自行实现。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Uploader } from 'czh-weapp'
+```
+
+### 基础用法
+
+文件上传完毕后会触发afteRread回调函数，获取到对应的文件的临时地址，然后再使用wx.uploadFile将图片上传到远程服务器上。
+
+<Image src="/imgs/uploader/basic.jpg" />
+
+```jsx
+import { useImmer } from 'immer'
+import { useMemoizedFn } from 'ahooks'
+
+const [fileList, updateFileList] = useImmer([])
+
+const onAfterRead = useMemoizedFn((event) => {
+  const { file } = event
+
+  updateFileList(draft => {
+    draft.push(file)
+  })
+})
+
+<Uploader 
+  fileList={fileList}
+  onAfterRead={onAfterRead}
+/>
+```
+
+### 限制上传格式为视频 
+
+通过accept属性来限制上传文件的格式。
+
+```jsx
+<Uploader 
+  accept="video"
+/>
+```
+
+### 文件预览
+
+通过向组件传入fileList属性，可以绑定已经上传的图片列表，并展示图片列表的预览图。
+
+<Image src="/imgs/uploader/preview.jpg" />
+
+```jsx
+<Uploader 
+  accept="file"
+  fileList={[
+    {
+      url: 'https://img.yzcdn.cn/vant/leaf.jpg',	
+    },
+    {
+      url: 'https://img.yzcdn.cn/vant/tree.jpg',	
+    }  
+  ]}
+  multiple
+/>	
+```
+
+### 上传状态
+
+通过status属性可以标识上传状态，uploading表示上传中，failed表示上传失败，done表示上传完成。
+
+<Image src="/imgs/uploader/uploading.jpg" />
+
+```jsx
+<Uploader 
+  fileList={[
+    {
+      url: 'https://img.yzcdn.cn/vant/leaf.jpg',
+      status: 'uploading',
+      message: '上传中',
+    },
+    {
+      url: 'https://img.yzcdn.cn/vant/tree.jpg',
+      status: 'failed',
+      message: '上传失败',
+    },
+  ]}
+/>		
+```
+
+### 上传前校验
+
+将useBeforeRead属性设置为true，然后绑定 onBeforeRead 事件可以在上传前进行校验，调用 callback 方法传入 true 表示校验通过，传入 false 表示校验失败。
+
+```jsx
+const onBeforeRead = useMemoizedFn((event) => {
+  const { file, callback } = event
+
+  const isValid = file.type === 'video'
+
+  if (!isValid) {
+    wx.showToast({ title: '前置检查：只可上传视频', icon: 'none' });
+  }
+
+  callback(isValid)
+})
+
+<Uploader 
+    accept="all"
+    useBeforeRead
+    onBeforeRead={onBeforeRead}
+  />		
+```
+
+### 限制上传数量
+
+通过maxCount属性可以限制上传文件的数量，上传数量达到限制后，会自动隐藏上传区域。
+
+<Image src="/imgs/uploader/count.jpg" />
+
+```jsx
+<Uploader 
+  maxCount={2}
+/>		
+```
+
+### 限制上传文件大小
+
+通过maxSize属性可以限制上传文件的大小，并可以通过onOverSize事件处理超过的情况。
+
+```jsx
+const onOverSize = useMemoizedFn(() => {
+  wx.showToast({ title: '大小应小于500kb', icon: 'none' });
+})
+
+// 上传大小为500kb
+<Uploader 
+  maxSize={500*1024}
+  onOverSize={onOverSize}
+/>		
+```
+
+### 开启多选模式
+
+通过multiple属性控制是否开启多选模式。
+
+```jsx
+<Uploader 
+  multiple
+/>		
+```
+
+### 自定义上传样式
+
+通过customUpload属性可以自定义上传区域的样式。
+
+<Image src="/imgs/uploader/custom.jpg" />
+
+```jsx
+<Uploader 
+  customUpload={
+    <Button icon="plus" type="primary">上传文件</Button>
+  }
+/>		
+```
+
+### 自定义上传图标与文字
+
+通过uploadIcon以及uploadText属性可以自定义上传图标以及文案。
+
+<Image src="/imgs/uploader/custom-icon.jpg" />
+
+```jsx
+<Uploader 
+  name="eleventh"
+  uploadIcon="photo"
+  uploadText="上传文件"
+/>		
+```
+
+### 禁用文件上传
+
+通过disabled属性控制是否禁用上传。
+
+```
+<Uploader 
+  disabled
+/>
+```
+
+### 设置不可删除
+
+通过fileListItem中的deletable属性来控制是否可以删除。
+
+<Image src="/imgs/uploader/deletable.jpg" />
+
+```jsx
+<Uploader 
+  fileList={[
+    {
+      url: 'https://img.yzcdn.cn/vant/leaf.jpg',	
+      deletable: false
+    }
+  ]}
+/>	
+```
+
+### 自定义背景颜色
+
+可以通过className或style设置css变量来自定义背景颜色，其它具体支持的样式变量在下面的样式变量列表中。
+
+<Image src="/imgs/uploader/background.jpg" />
+
+```jsx
+<Uploader 
+  style={{
+    '--czh-uploader-background-color': '#07c160'
+  }}
+/>	
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| name | 标识符，可以在回调函数的第二项参数中获取	 | _string_ \| _number_ | - |
+| accept | 接受的文件类型, 可选值为all |\ media \| image \| file \| video	 | _string_ | `image` |
+| fileList | fileList 为一个文件对象数组列表，数组中的每一个对象包含以下 key，请看下面的具体文档	| _Array_ | - |
+| maxSize | 文件大小限制，单位为byte	 | _number_ | - |
+| maxCount | 文件上传数量限制	 | _number_ | - |
+| deletable | 是否展示删除按钮		 | _boolean_ | `true` |
+| showUpload | 是否展示文件上传按钮			 | _boolean_ | `true` |
+| previewImage | 是否在上传完成后展示预览图	| _boolean_ | `true` |
+| previewFullImage | 是否在点击预览图后展示全屏图片预览		| _boolean_ | `true` |
+| imageFit | 预览图裁剪模式，可选值参考小程序image组件的mode属性 | _string_ | `scaleToFill` |
+| uploadIcon | 上传区域图标，可选值见 Icon 组件		| _string_ \| _ReactElement_ | - |
+| customUpload | 自定义上传样式	| _ReactElement_ | - |
+| sizeType | 所选的图片的尺寸, 当accept为image \| media 类型时设置所选图片的尺寸可选值为original \| compressed	| _string[]_ | `['original','compressed']` |
+| uploadText | 上传区域文字提示		 | _string_ | - |
+| capture | 图片或者视频选取模式，当accept为image \| media 类型时设置capture可选值为camera可以直接调起摄像头	 | _string[]_ | `['album', 'camera']` |
+| maxDuration | 当 accept 为 video \| media 时生效，拍摄视频最长拍摄时间，单位秒	| _number_ | `60` |
+| camera | 当 accept 为 video \| media 时生效，可选值为 back \| front		 | _string_ | - |
+| disabled | 是否禁用文件上传	| _boolean_ | `false` |
+| multiple | 是否开启图片多选，部分安卓机型不支持	| _boolean_ | `false` |
+| useBeforeRead | 是否开启文件读取前事件		| _boolean_ | `false` |
+| compressed | 当 accept 为 video 时生效，是否压缩视频，默认为true		| _boolean_ | `true` |
+</div>
+
+### Events
+
+<div class="table-container">
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onBeforeRead | 文件读取前，在回调函数中返回 false 可终止文件读取，绑定事件的同时需要将useBeforeRead属性设置为true	 | event.file: 当前读取的文件，event.callback: 回调函数，调用callback(false)终止文件读取 |
+| onAfterRead | 文件读取完成后	 | event.file: 当前读取的文件 |
+| onDelete | 删除图片		 | event.index: 删除图片的序号值 |
+| onOverSize | 文件超出大小限制			 | - |
+| onClickPreview | 点击预览图片				 | event.index: 点击图片的序号值 |
+</div>
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-uploader-width | 宽度 | `160px` |
+| --czh-uploader-height | 高度 | `160px` |
+| --czh-uploader-margin | margin值 | ` 0 var(--czh-padding-xs) var(--czh-padding-xs) 0` |
+| --czh-uploader-background-color | 背景颜色 | `--czh-color-gray-1` |
+| --czh-uploader-icon-color | 上传图标颜色 | `--czh-color-gray-4` |
+| --czh-uploader-icon-size | 上传图标大小 | `48px` |
+| --czh-uploader-text-color | 上传文字颜色 | `--czh-color-gray-6` |
+| --czh-uploader-text-font-size | 上传文字大小 | `--czh-font-size-sm` |
+| --czh-uploader-text-margin | 上传文字margin | `var(--czh-padding-xs) 0 0 0` |
+| --czh-uploader-disabled-opacity | 禁用状态下的透明度 | `0.5` |
+| --czh-uploader-preview-margin | 预览区域margin | `0 var(--czh-padding-xs) var(--czh-padding-xs) 0;` |
+| --czh-uploader-delete-icon-width| 删除图标宽度 | `28px` |
+| --czh-uploader-delete-icon-height | 删除图标高度 | `28px` |
+| --czh-uploader-delete-background-color | 删除元素背景颜色 | `rgba(0, 0, 0, 0.7)` |
+| --czh-uploader-delete-border-radius | 删除元素圆角 | `0 0 0 24px` |
+| --czh-uploader-delete-color | 删除元素文字颜色 | `--czh-color-white` |
+| --czh-uploader-loading-icon-width | 加载图标宽度 | `44px` |
+| --czh-uploader-loading-icon-height | 加载图标高度 | `44px` |
+| --czh-uploader-loading-icon-color | 加载图标颜色 | `--czh-color-white` |
+| --czh-uploader-loading-icon-color | 加载图标颜色 | `--czh-color-white` |
+</div>

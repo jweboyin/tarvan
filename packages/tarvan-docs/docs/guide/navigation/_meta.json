@@ -1,0 +1,27 @@
+[
+  {
+    "type": "file",
+    "name": "navbar",
+    "label": "Navbar 导航栏"
+  },
+  {
+    "type": "file",
+    "name": "tabs",
+    "label": "Tab 标签页"
+  },
+  {
+    "type": "file",
+    "name": "tabbar",
+    "label": "Tabbar 标签栏"
+  },
+  {
+    "type": "file",
+    "name": "index-bar",
+    "label": "IndexBar 索引栏"
+  },
+  {
+    "type": "file",
+    "name": "back-top",
+    "label": "BackTop 返回顶部"
+  }
+]

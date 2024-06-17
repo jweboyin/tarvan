@@ -1,0 +1,47 @@
+[
+  {
+    "type": "file",
+    "name": "infinite-list",
+    "label": "InfiniteList 滚动加载列表"
+  },
+  {
+    "type": "file",
+    "name": "virtual-list",
+    "label": "VirtualList 虚拟列表"
+  },
+  {
+    "type": "file",
+    "name": "collapse",
+    "label": "Collapse 折叠面板"
+  },
+	{
+    "type": "file",
+    "name": "divider",
+    "label": "Divider 分割线"
+  },
+	{
+    "type": "file",
+    "name": "process",
+    "label": "Process 进度条"
+  },
+	{
+    "type": "file",
+    "name": "skeleton",
+    "label": "Skeleton 骨架屏"
+  },
+	{
+    "type": "file",
+    "name": "countdown",
+    "label": "Countdown 倒计时"
+  },
+  {
+    "type": "file",
+    "name": "empty",
+    "label": "Empty 空状态"
+  },
+  {
+    "type": "file",
+    "name": "sticky",
+    "label": "Sticky 粘性布局"
+  }
+]

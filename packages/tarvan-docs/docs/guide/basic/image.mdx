@@ -1,0 +1,136 @@
+import Image from '../../components/image'
+
+# Image 图片
+
+### 介绍
+
+增强版的 img 标签，提供多种图片填充模式，支持图片懒加载、加载中提示、加载失败提示。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Image } from 'czh-weapp'
+```
+
+### 基础用法
+
+基础用法与原生 image 标签一致，设置src即可，对于宽度，高度，请在css中设置即可。
+
+```jsx
+<Image src={src} className={style.image} />
+```
+
+```css
+.image {
+  width: 200px;
+  height: 200px;
+}
+```
+
+### 填充模式
+
+通过fit属性可以设置图片填充模式，可选值为contain｜cover｜fill｜widthFix｜heightFix｜none。
+
+<Image src="/imgs/image/fit.jpg" />
+
+```jsx
+<Image 
+  src={src} 
+  fit="fill"
+/>	
+```
+
+### 圆形图片
+
+通过round属性可以设置图片变圆，注意当图片宽高不相等且fit为contain或scale-down时，将无法填充一个完整的圆形。
+
+<Image src="/imgs/image/round.jpg" />
+
+```jsx
+<Image src={src} round />	
+```
+
+### 加载中提示
+
+Image组件提供了默认的加载中提示，支持通过loadingSlot自定义内容。
+
+<Image src="/imgs/image/loading.jpg" />
+
+```jsx
+<Image showLoading />		
+<Image loadingSlot={<Loading />} showLoading />		
+```
+
+### 加载失败提示
+
+Image组件提供了默认的加载失败提示，支持通过errorSlot自定义内容。
+
+<Image src="/imgs/image/failed.jpg" />
+
+```jsx
+<Image 
+  src="https://9daye-icon.oss-cn-shanghai.aliyuncs.com/icons/succes.png" 
+  showError 
+/>		
+
+<Image 
+  src="https://9daye-icon.oss-cn-shanghai.aliyuncs.com/icons/succes.png" 
+  errorSlot={<text>加载失败</text>}
+  showError 
+/>	
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| src | 图片链接 | _string_ | - |
+| fit | 图片填充模式，可选值为contain｜cover｜fill｜widthFix｜heightFix｜none	 | _string_ | `fill` |
+| round | 是否显示为圆形 | _boolean_ | `false` |
+| lazyLoad | 是否懒加载 | _boolean_ | `false` |
+| showMenuByLongpress | 是否开启长按图片显示识别小程序码菜单 | _boolean_ | `false` |
+| showError | 是否展示图片加载失败提示	 | _boolean_ | `true` |
+| showLoading | 是否展示图片加载中提示		 | _boolean_ | `false` |
+| loadingSlot | 自定义loading | _ReactNode_ | - |
+| errorSlot | 自定义error | _ReactNode_ | - |
+</div>
+
+### fit填充模式
+
+<div class="table-container">
+| 名称 | 说明 | 
+| --- | --- | 
+| contain | 保持宽高缩放图片，使图片的长边能完全显示出来 | 
+| cover | 保持宽高缩放图片，使图片的短边能完全显示出来，裁剪长边 | 
+| fill | 拉伸图片，使图片填满元素 | 
+| widthFix | 缩放模式，宽度不变，高度自动变化，保持原图宽高比不变 | 
+| heightFix | 缩放模式，高度不变，宽度自动变化，保持原图宽高比不变 | 
+| none | 保持图片原有尺寸 | 
+</div>
+
+### Events
+
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onLoad | 图片加载完毕时触发	 |event: Event |
+| onClick | 点击图片时触发		 |event: Event |
+| onError | 图片加载失败时触发			 |event: Event |
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-image-placeholder-text-color | 加载中，加载失败提示的字体颜色 | `--czh-color-gray-6` |
+| --czh-image-placeholder-font-size | 加载中，加载失败提示的字体大小 | `--czh-font-size-md` |
+| --czh-image-placeholder-background-color | 加载中，加载失败提示的背景颜色 | `--czh-color-gray-1` |
+| --czh-image-loading-icon-color | 加载中图标颜色 | `--czh-color-gray-4` |
+| --czh-image-loading-icon-size | 加载中图标大小 | `64px` |
+| --czh-image-error-icon-color | 加载失败图标颜色 | `--czh-color-gray-4` |
+| --czh-image-error-icon-size | 加载失败图标大小 | `64px` |
+</div>

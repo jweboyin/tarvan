@@ -1,0 +1,7 @@
+.container {
+  width: 100%;
+
+  @media (min-width: 576px) { 
+    width: var(--tan-doc-image-pc-width, 375px);
+  }
+}

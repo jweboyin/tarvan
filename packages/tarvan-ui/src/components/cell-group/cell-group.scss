@@ -1,0 +1,48 @@
+@import '../../styles/functions/util.scss';
+@import '../../styles/variables.scss';
+
+$block: #{$prefix}-cell-group;
+
+.#{$block} {
+	&.#{$block}--inset {
+		margin: var(	
+			--#{$block}-inset-padding,
+			$cell-group-inset-padding
+		);
+		border-radius: var(	
+			--#{$block}-inset-border-radius,
+			$cell-group-inset-border-radius
+		);
+		overflow: hidden;
+	}
+
+	&__title {
+		padding: var(
+			--#{$block}-title-padding,
+			$cell-group-title-padding
+		);
+
+		font-size: var(
+			--#{$block}-title-font-size, 
+			$cell-group-title-font-size	
+		);
+
+		line-height: var(
+			--#{$block}-title-line-height, 
+			$cell-group-title-line-height	
+		);
+
+		color: var(
+			--#{$block}-title-color, 
+			$cell-group-title-color	
+		);
+
+		&.#{$block}_title--inset {
+			padding: var(
+				--#{$block}-inset-title-padding,
+				$cell-group-inset-title-padding
+			);
+		}	
+	}
+}
+

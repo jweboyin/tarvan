@@ -1,0 +1,165 @@
+import Image from '../../components/image'
+
+# Dialog 弹出框
+
+### 介绍
+
+弹出模态框，常用于消息提示、消息确认，或在当前页面内完成特定的交互操作，支持函数调用和组件调用两种方式。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Dialog } from 'czh-weapp'
+```
+
+### 消息提示
+
+用于提示一些消息，只包含一个确认按钮。
+
+<Image src="/imgs/dialog/note.jpg" />
+
+```jsx
+<Dialog 
+  title="标题"
+  message="代码是一种手工艺术"
+  show
+  showConfirmButton
+  onClose={onClose}
+  onConfirm={onConfirm}
+/>
+```
+
+### 消息确认
+
+用于确认消息，包含取消和确认按钮。
+
+<Image src="/imgs/dialog/confirm.jpg" />
+
+```jsx
+<Dialog 
+  message="代码是一种手工艺术"
+  show
+  showCancelButton
+  showConfirmButton
+  onClose={onClose}
+  onCancel={onCancel}
+  onConfirm={onConfirm}
+/>
+```
+
+### 异步关闭
+
+通过 beforeClose 属性可以传入一个回调函数，在弹窗关闭前进行特定操作。
+
+<Image src="/imgs/dialog/async.jpg" />
+
+```jsx
+<Dialog 
+  title="异步关闭"
+  message="代码是一种手工艺术"
+  show
+  showCancelButton
+  showConfirmButton
+  onBeforeClose={onBeforeClose}
+/>
+```
+
+### 自定义内容
+
+children即为自定义内容。
+
+<Image src="/imgs/dialog/custom.jpg" />
+
+```jsx
+<Dialog 
+  show
+  showCancelButton
+  showConfirmButton
+>
+  <image
+    src="https://img.yzcdn.cn/public_files/2017/09/05/4e3ea0898b1c2c416eec8c11c5360833.jpg"
+  />
+</Dialog>
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| show | 是否显示弹窗			 | _boolean_ | - |
+| title | 标题				 | _string_ | - |
+| message | 文本内容，支持通过\n换行				 | _string_ | - |
+| messageAlign | 内容对齐方式，可选值为left \| center \| right | _string_ | `center` |
+| showCancelButton | 是否展示取消按钮	| _boolean_ | `false` |
+| showConfirmButton | 是否展示确认按钮 | _boolean_ | `true` |
+| closeOnClickOverlay | 点击遮罩层时是否关闭弹窗 | _boolean_ | `false` |
+| overlay | 是否展示遮罩层	 | _boolean_ | `true` |
+| confirmButtonText | 确认按钮的文案		 | _string_ | `确认` |
+| cancelButtonText | 取消按钮的文案			 | _string_ | `取消` |
+| zIndex | z-index 层级			 | _number_ | `100` |
+| transition | 动画名称，可选值为fade			 | _string_ | `scale` |
+| confirmButtonOpenType | 确认按钮的微信开放能力，具体支持可参考 微信官方文档			 | _string_  |
+</div>
+
+### OpenType Props
+
+使用confirmButtonOpenType后，支持以下 Props：
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 | openType |
+| --- | --- | --- | --- | --- |
+| businessId | 客服消息子商户 id	| _number_ | - | `contact` |
+| sessionFrom | 会话来源		| _string_ | - | `contact` |
+| lang | 指定返回用户信息的语言，zh_CN 简体中文，zh_TW 繁体中文，en 英文		| _string_ | `en` | `getUserInfo` |
+| appParameter | 打开 APP 时，向 APP 传递的参数		| _string_ | - | `launchApp` |
+| showMessageCard | 是否显示会话内消息卡片		| _boolean_ | `false` | `contact` |
+| sendMessageTitle | 会话内消息卡片标题		| _string_ | `当前标题	` | `contact` |
+| sendMessagePath | 会话内消息卡片点击跳转小程序路径		| _string_ | `当前分享路径		` | `contact` |
+| sendMessageImg | sendMessageImg			| _string_ | `截图			` | `contact` |
+</div>
+
+### Events
+
+<div class="table-container">
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onBeforeClose | 用于弹窗异步关闭时触发	 | - |
+| onClose | 弹窗关闭时触发		 | `event.detail: 触发关闭事件的来源` |
+| onCancel | 点击取消按钮时触发		 | - |
+| onConfirm | 点击确认按钮时触发			 | - |
+| onGetUserInfo | 点击确认按钮时，会返回获取到的用户信息，从返回参数的 detail 中获取到的值同 wx.getUserInfo			 | - |
+| onContact | 客服消息回调	| - |
+| onGetPhoneNumber | 获取用户手机号回调	| - |
+| onOpenSetting | 在打开授权设置页后回调	| - |
+| onError | 当使用开放能力时，发生错误的回调	| - |
+</div>
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-dialog-top | 定位top值 | `45%` |
+| --czh-dialog-width | 定位top值 | `640px` |
+| --czh-dialog-small-screen-width | 小屏幕下宽度 | `90%` |
+| --czh-dialog-font-size | 字体大小 | `--czh-font-size-lg` |
+| --czh-dialog-border-radius | 圆角大小 | `32px` |
+| --czh-dialog-background-color | 背景颜色 | `--czh-color-white` |
+| --czh-dialog-header-font-weight | 标题的字体粗细程度| `--czh-font-weight-bold` |
+| --czh-dialog-header-line-height | 标题的字体行高 | `48px` |
+| --czh-dialog-header-padding-top | 标题栏的padding-top | `--czh-padding-lg` |
+| --czh-dialog-header-isolated-padding | 没有message的情况下标题栏的padding | `var(--czh-padding-lg) 0` |
+| --czh-dialog-message-padding | 消息区域的padding | `--czh-padding-lg` |
+| --czh-dialog-message-font-size | 消息的字体大小 | `--czh-font-size-md` |
+| --czh-dialog-message-line-height | 消息的行高 | `40px` |
+| --czh-dialog-message-max-height | 消息区域最大高度 | `60vh` |
+| --czh-dialog-has-title-message-text-color | 显示标题的情况下，消息的字体颜色 | `--czh-color-gray-7` |
+| --czh-dialog-has-title-message-padding-top | 显示标题的情况下，消息区域的padding-top | `--czh-padding-xs` |
+| --czh-dialog-confirm-button-color | 确认按钮颜色 | `--czh-color-red` |
+| --czh-dialog-cancel-button-color | 取消按钮颜色 | `--czh-color-gray-8` |
+</div>

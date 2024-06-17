@@ -1,0 +1,217 @@
+import Image from '../../components/image'
+
+# Cell 单元格
+
+### 介绍
+
+单元格为列表中的单个展示项。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Cell } from 'czh-weapp'
+```
+
+### 基础用法
+
+Cell可以单独使用，也可以与CellGroup搭配使用。CellGroup可以为Cell提供上下外边框。
+
+<Image src="/imgs/cell/basic.jpg" />
+
+```jsx
+<CellGroup>
+  <Cell 
+    title="单元格" 
+    value="内容" 
+  />
+  <Cell 
+    title="单元格2" 
+    value="内容" 
+    label="描述信息" 
+    border={false}
+  />
+</CellGroup>
+```
+
+### 卡片风格
+
+通过 CellGroup 的 inset 属性，可以将单元格转换为圆角卡片风格。
+
+<Image src="/imgs/cell/card.jpg" />
+
+```jsx
+<CellGroup inset>
+  <Cell 
+    title="单元格" 
+    value="内容" 
+  />
+
+  <Cell 
+    title="单元格" 
+    value="内容" 
+    label="描述信息" 
+  />
+</CellGroup>
+```
+
+### 单元格大小
+
+通过size属性可以控制单元格的大小。
+
+<Image src="/imgs/cell/size.jpg" />
+
+```jsx
+<CellGroup>
+  <Cell 
+    title="单元格" 
+    value="内容" 
+    size="large"
+  />
+
+  <Cell 
+    title="单元格" 
+    value="内容" 
+    label="描述信息" 
+    size="large"
+    border={false}
+  />
+</CellGroup>
+```
+
+### 展示图标
+
+通过icon属性在标题左侧展示图标。
+
+<Image src="/imgs/cell/icon.jpg" />
+
+```jsx
+<Cell 
+  title="单元格"
+  value="内容"
+  icon={<Icon name="plus" />}
+  border={false}
+/>
+```
+
+### 展示箭头
+
+设置rightIcon属性在单元格右侧展示图标，默认是右箭头。
+
+<Image src="/imgs/cell/right.jpg" />
+
+```jsx
+<Cell 
+  title="单元格" 
+  value="内容" 
+  rightIcon
+/>
+
+<Cell 
+  title="单元格" 
+  value="内容" 
+  rightIcon={<Icon name="arrow-down" />}
+/>
+```
+
+### 展示点击效果
+
+设置clickable属性展示点击效果。
+
+```jsx
+<Cell 
+  title="单元格" 
+  value="内容" 
+  clickable
+  rightIcon
+/>
+```
+
+### 分组标题
+
+通过CellGroup的title属性可以指定分组标题。
+
+<Image src="/imgs/cell/group.jpg" />
+
+```jsx
+<CellGroup title="分组 1">
+  <Cell title="单元格" value="内容" />
+</CellGroup>	
+
+<CellGroup title="分组 2">
+  <Cell title="单元格" value="内容" />
+</CellGroup>	
+```
+
+### 垂直居中
+
+通过center属性可以让Cell的左右内容都垂直居中。
+
+<Image src="/imgs/cell/center.jpg" />
+
+```jsx
+<Cell 
+  title="单元格"	
+  value="内容"
+  label="描述信息"
+  center
+/>
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| icon | 左侧图标名称 ｜ 图片文件 ｜ 图片链接 | _string_ | - |
+| title | 左侧标题 | _string_ ｜ __number__ | - |
+| value | 右侧内容	 | _string_ ｜ __number__ | - |
+| label | 标题下方的描述信息	| _string_ | - |
+| size | 单元格大小，可选值为 large		| _string_ | - |
+| border | 是否显示下边框			| _boolean_ | `true` |
+| center | 是否使内容垂直居中	| _boolean_ | `false` |
+| clickable | 是否使内容垂直居中	| _boolean_ | `false` |
+| rightIcon | 右侧图标, 设为true默认显示为箭头，或者传入Icon组件	| _boolean_ ｜ __ReactNode__ | - |
+| required | 是否显示表单必填星号		| _boolean_ | `false` |
+| hoverClass | 是否显示表单必填星号		| _boolean_ | `false` |
+</div>
+
+### Events
+
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onClick | 点击单元格时触发 | - |
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-cell-vertical-padding | 单元格垂直方向上的padding | `20px` |
+| --czh-cell-horizontal-padding | 单元格水平方向上的padding | `--czh-padding-md` |
+| --czh-cell-hairline-bottom-left | 单元格底部边框left值 | `--czh-cell-horizontal-padding` |
+| --czh-cell-hairline-bottom-right | 单元格底部边框right值 | `--czh-cell-horizontal-padding` |
+| --czh-cell-font-size | 单元格字体大小 | `--czh-font-size-md` |
+| --czh-cell-line-height | 单元格行高 | `48px` |
+| --czh-cell-text-color | 单元格字体颜色 | `--czh-color-text` |
+| --czh-cell-background-color | 单元格背景颜色 | `--czh-color-white` |
+| --czh-cell-border-color | 单元格边框颜色 | `--czh-border-color` |
+| --czh-cell-label-margin-top | 标题下方的描述信息的martop top | `6px` |
+| --czh-cell-label-font-size | 标题下方的描述信息的字体大小 | `--czh-font-size-sm` |
+| --czh-cell-label-line-height | 标题下方的描述信息的字体行高 | `36px` |
+| --czh-cell-label-color | 标题下方的描述信息的字体颜色 | `--czh-color-gray-6` |
+| --czh-cell-value-color | 右侧内容字体颜色 | `--czh-color-gray-6` |
+| --czh-cell-icon-size | 左侧图标大小 | `32px` |
+| --czh-cell-required-left | 必填星号left值 | `--czh-padding-xs` |
+| --czh-cell-required-color | 必填星号颜色 | `--czh-color-red` |
+| --czh-cell-left-icon-margin-right | 左侧图标margin-right | `--czh-padding-base` |
+| --czh-cell-right-icon-margin-left | 右侧图标margin-left | `--czh-padding-base` |
+| --czh-cell-right-icon-color | 右侧图标颜色 | `--czh-color-gray-6` |
+| --czh-cell-large-vertical-padding | size为large的单元格在垂直方向上的padding | `--czh-padding-sm` |
+| --czh-cell-large-title-font-size | size为large的单元格的字体大小 | `--czh-font-size-lg` |
+| --czh-cell-large-value-font-size | size为large的单元格右侧内容的字体大小 | `--czh-font-size-lg` |
+| --czh-cell-large-label-font-size | size为large的单元格标题下方的描述信息的字体大小 | `--czh-font-size-md` |
+</div>

@@ -1,0 +1,153 @@
+import Image from '../../components/image'
+import DocSpace from '../../components/doc-space'
+
+# Area 省市区选择
+
+### 介绍
+
+用于显示一个省市区选择弹窗。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Area } from 'czh-weapp'
+```
+
+### 基础用法
+
+通过showPopup属性来控制是否显示省市区弹窗。通过onChange属性来监听选中的值。
+
+<DocSpace>
+  <Image src="/imgs/area/basic.jpg" />
+  <Image src="/imgs/area/basic2.jpg" />
+</DocSpace>
+
+```jsx
+import { useMemoizedFn } from 'ahooks'
+
+const [showBasic, setShowBasic] = useState(false)
+
+const onShowBasic = useMemoizedFn(() => {
+  setShowBasic(true)
+})
+
+const onHideBasic = useMemoizedFn(() => {
+  setShowBasic(false)
+})
+
+const onChange = useMemoizedFn((value) => {
+  const {
+    city,
+    district,
+    province
+  } = value
+
+  const areaCode = `${province.code}/${city.code}/${district.code}`
+  const areaName = `${province.name} ${city.name} ${district.name}`
+
+  Taro.showToast({
+    title: `name: ${areaName}, code; ${areaCode}`,
+    icon: 'none',
+    duration: 2000
+  })
+
+  onHideBasic()
+})
+
+<Cell 
+  title="点击显示省市区" 
+  rightIcon
+  onClick={onShowBasic}
+/>
+
+ <Area 
+  showPopup={showBasic}	
+  onChange={onChange}
+  onClosePopup={onHideBasic}
+/>
+```
+
+### 自定义样式
+
+通过style或者className改变css变量来自定义样式，具体支持的变量请看下面的样式变量列表。
+
+<Image src="/imgs/area/custom.jpg" />
+
+```jsx
+<Area 
+  showPopup
+  style={{
+    '--tan-area-tab-actived-color': '#07c160',
+    '--tan-area-item-actived-color': '#07c160'
+  }}
+/> 
+```
+
+### 自定义加载数据的函数
+
+通过loadArea属性设置加载地区数据的函数, 默认从创智慧公用wx-helper服务加载数据列表, 列表项的数据结构请看AreaDistrict模型。
+
+```jsx
+const loadArea = useMemoizedFn(async (parentCode) => {
+  // 请求数据返回
+})
+
+<Area 
+  loadArea={loadArea}
+/>
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 属性        | 说明                 | 类型         | 默认值      |
+| ----------- | --------------------| ----------- | ---------- |
+| popupable       |  是否已弹窗显示   | _boolean_ | `true` |
+| showPoup | 是否显示弹窗 | _boolean_| `false` |
+| loadArea | 加载地区数据函数，默认从wx-helper服务接口加载数据，返回的列表数据为AreaDistrict对象列表 | _function_ | - |
+</div>
+
+### AreaDistict模型
+
+| 属性        | 说明                 | 类型         | 
+| ----------- | --------------------| ----------- | 
+| code |  地区code | _string_ |
+| fullName | 地区全称 | _string_ |
+| name | 地区名称 | _string_ |
+| parentCode | 上级code | _string_ |
+
+
+### Events
+
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onChange | 点击确认时触发 | - |
+| onClosePopup | 点击取消时触发 | - |
+
+
+### 样式变量
+
+<div class="table-container">
+| 属性               | 说明     | 默认值                    | 
+| ------------------ | -------- | ------------------------- |
+| --czh-loading-spinner-size     | 加载图标大小 | `48px`   |     
+| --czh-header-border-bottom | 头部下边框 | `1PX solid #f4f4f4`  | 
+| --czh-tabs-background | tab栏背景色 | `#FFFFFF`  | 
+| --czh-tab-padding | tab项padding| `30px 0 24px 0`  | 
+| --czh-tab-margin  | tab项margin| `0 80px 0 0`  |
+| --czh-tab-font-size  | tab项字体大小| `26px`  | 
+| --czh-tab-actived-color  | 激活的tab项字体颜色 | `#3F66F5`  |
+| --czh-tab-disabled-color  | 未激活的tab项字体颜色 | `#999999`  |
+| --czh-header-confirm-width  | 确认区域宽度 | `100px`  |
+| --czh-header-confirm-color  | 确认区域字体颜色 | `#434343`  | 
+| --czh-header-confirm-disabled-color  | 确认区域禁用状态字体颜色 | `#999999`  | 
+| --czh-header-confirm-font-size  | 确认区域字体大小 | `26px`  | 
+| --czh-item-color  | 列表项字体颜色 | `#999999`  | 
+| --czh-item-actived-color  | 列表项字体激活状态字体颜色 | `#3F66F5`  | 
+| --czh-item-font-size  | 列表项字体大小 | `26px`  | 
+| --czh-item-padding | 列表项padding | `20px 0 20px 0`  |
+</div>

@@ -1,0 +1,37 @@
+[
+  {
+    "type": "file",
+    "name": "loading",
+    "label": "Loading 加载"
+  },
+
+  {
+    "type": "file",
+    "name": "dialog",
+    "label": "Dialog 弹出框"
+  },
+
+  {
+    "type": "file",
+    "name": "overlay",
+    "label": "Overlay 遮罩层"
+  },
+
+  {
+    "type": "file",
+    "name": "notify",
+    "label": "Notify 消息通知"
+  },
+
+  {
+    "type": "file",
+    "name": "dropdown-menu",
+    "label": "DropdownMenu 下拉菜单"
+  },
+
+  {
+    "type": "file",
+    "name": "pull-refresh",
+    "label": "PullRefresh 下拉刷新"
+  }
+]

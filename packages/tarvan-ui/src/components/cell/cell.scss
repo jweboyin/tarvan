@@ -1,0 +1,145 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins/hairline.scss';
+
+$block: #{$prefix}-cell;
+
+.#{$block} {
+	--cell-vertical-padding: var(--#{$block}-vertical-padding, #{$cell-vertical-padding});
+	--cell-horizontal-padding: var(--#{$block}-horizontal-padding, #{$cell-horizontal-padding});
+	--cell-hairline-bottom-left: var(--#{$block}-hairline-bottom-left, #{$cell-horizontal-padding});
+	--cell-hairline-bottom-right: var(--#{$block}-hairline-bottom-right, #{$cell-horizontal-padding});
+	--cell-font-size: var(--#{$block}-font-size, #{$cell-font-size});
+	--cell-line-height: var(--#{$block}-line-height, #{$cell-line-height});
+	--cell-text-color: var(--#{$block}-text-color, #{$cell-text-color});
+	--cell-background-color: var(--#{$block}-background-color, #{$cell-background-color});
+	--cell-border-color: var(--#{$block}-border-color, #{$cell-border-color});
+	--cell-label-margin-top: var(--#{$block}-label-margin-top, #{$cell-label-margin-top});
+	--cell-label-font-size: var(--#{$block}-label-font-size, #{$cell-label-font-size});
+	--cell-label-line-height: var(--#{$block}-label-line-height, #{$cell-label-line-height});
+	--cell-label-color: var(--#{$block}-label-color, #{$cell-label-color});
+	--cell-value-color: var(--#{$block}-value-color, #{$cell-value-color});
+	--cell-icon-size: var(--#{$block}-icon-size, #{$cell-icon-size});
+	--cell-required-left: var(--#{$block}-required-left, #{$cell-required-left});
+	--cell-required-color: var(--#{$block}-required-color, #{$cell-required-color});
+	--cell-actived-color: var(--#{$block}-actived-color, #{$cell-actived-color});
+	--cell-left-icon-margin-right: var(--#{$block}-left-icon-margin-right, #{$cell-left-icon-margin-right});
+	--cell-right-icon-margin-left: var(--#{$block}-right-icon-margin-left, #{$cell-right-icon-margin-left});
+	--cell-right-icon-color: var(--#{$block}-right-icon-color, #{$cell-right-icon-color});
+	--cell-large-vertical-padding: var(--#{$block}-large-vertical-padding, #{$cell-large-vertical-padding});
+	--cell-large-title-font-size: var(--#{$block}-large-title-font-size, #{$cell-large-title-font-size});
+	--cell-large-value-font-size: var(--#{$block}-large-value-font-size, #{$cell-large-value-font-size});
+	--cell-large-label-font-size: var(--#{$block}-large-label-font-size, #{$cell-large-label-font-size});
+	--cell-title-font-weight: var(--#{$block}-title-font-weight, #{$cell-title-font-weight});
+	--cell-title-flex: var(--#{$block}-title-flex, 1);
+
+	position: relative;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+	padding: var(--cell-vertical-padding) var(--cell-horizontal-padding);
+	font-size: var(--cell-font-size);
+	line-height: var(--cell-line-height);
+	color: var(--cell-text-color);
+	background: var(--cell-background-color);
+
+	&::after {
+		@include hairline-bottom(
+			var(--cell-border-color), 
+			var(--cell-hairline-bottom-left), 
+			var(--cell-hairline-bottom-right)
+		)
+	}
+
+	&.#{$block}--borderless::after {
+		display: none;
+	}
+
+	&__label {
+		margin-top: var(--cell-label-margin-top);
+		font-size: var(--cell-label-font-size);
+		line-height: var(--cell-label-line-height);
+		color: var(--cell-label-color);
+	}
+
+	&__value {
+		overflow: hidden;
+    text-align: right;
+    vertical-align: middle;
+		color: var(--cell-value-color);
+	}
+
+	&__title,
+  &__value {
+    &:empty {
+      display: none;
+    }
+  }
+	
+	&__value {
+		flex: 1;
+	}
+
+	&__title {
+		flex: var(--cell-title-flex);
+		font-weight: var(--cell-title-font-weight);
+	}
+
+	&__left-icon-wrap,
+  &__right-icon-wrap {
+		--#{$prefix}-icon-size: var(--cell-font-size)
+  }
+
+	&__left-icon-wrap {
+		margin-right: var(--cell-left-icon-margin-right);
+	}
+
+	&__right-icon-wrap {
+    margin-left: var(--cell-right-icon-margin-left);
+    color: var(--cell-right-icon-color);
+
+		--#{$prefix}-icon-color: var(--cell-right-icon-color);
+  }
+
+	&.#{$block}--required {
+		overflow: visible;
+
+    &::before {
+      position: absolute;
+      content: '*';
+      left: var(--cell-required-left);
+      font-size: var(--cell-font-size);
+      color: var(--cell-required-color);
+    }
+	}
+
+	&.#{$block}--center {
+		align-items: center;
+	}
+
+	&.#{$block}--clickable {
+		&.#{$block}--hover {
+			background-color: var(--cell-active-color);
+		}
+	}	
+
+	&.#{$block}--large {
+		padding-top: var(
+      --cell-large-vertical-padding
+    );
+    padding-bottom: var(
+      --cell-large-vertical-padding
+    );
+
+		.#{$block}__title {
+			font-size: var(--cell-large-title-font-size);
+		}
+
+		.#{$block}__value {
+			font-size: var(--cell-large-value-font-size);	
+		}
+
+		.#{$block}__label {
+			font-size: var(--cell-large-label-font-size);
+		}
+	}
+}

@@ -1,0 +1,87 @@
+:root body {
+  --rp-code-font-size: 13px;
+}
+
+html {
+  body {
+    font-size: 15px;
+
+    .rspress-sidebar {
+      border-right: 1px solid #f6f6f7;
+    }
+
+    .czh-doc-video-container {
+      width: 375px;
+      height: auto
+    }
+
+    @media (min-width: 1280px) {
+      .rspress-nav {
+        opacity: 0;
+      }
+
+      .rspress-doc-container {
+        padding-top: 0;
+        position: relative;
+        top: -45px;
+      }
+    }
+
+    @media (max-width: 1280px) {
+      .table-container {
+        width: 100%;
+        overflow-x:auto;
+
+        table {
+          min-width: 800px;
+        }
+      }
+
+      table {
+        th {
+          min-width: 100px;
+        }
+      }
+
+      .czh-doc-video-container {
+        width: 330px;
+      }
+    }
+  }
+}
+
+footer.absolute {
+  display:none;
+}
+
+table {
+  .border-gray-light-2 {
+    border-color: #f1f4f8;
+  }
+
+  &.block {
+    display:table;
+    width: 100%;
+    table-layout: auto;
+  }
+
+  th {
+    text-align: left;
+  }
+
+  td {
+    color: #34495e;
+    font-size: 14px;
+    line-height: 1.5;
+
+    > em {
+      -webkit-font-smoothing: auto;
+      color: #4fc08d;
+      display: inline-block;
+      font-family: Source Code Pro, Monaco, Inconsolata, monospace;
+      font-size: 14px;
+      font-style: normal;
+      max-width: 300px;
+    }
+  }
+}

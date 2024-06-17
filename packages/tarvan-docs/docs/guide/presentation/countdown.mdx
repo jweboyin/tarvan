@@ -1,0 +1,140 @@
+import Image from '../../components/image'
+
+# CountDown 倒计时
+
+### 介绍
+
+用于实时展示倒计时数值，支持毫秒精度。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { CountDown} from 'czh-weapp'
+```
+
+### 基础用法
+
+time属性表示倒计时总时长，单位为毫秒。
+
+<Image src="/imgs/countdown/basic.jpg" />
+
+```jsx
+<CountDown time={time} />	
+```
+
+### 自定义格式
+
+通过format属性设置倒计时文本的内容。
+
+<Image src="/imgs/countdown/custom.jpg" />
+
+```jsx
+<CountDown time={time} format="DD 天 HH 时 mm 分 ss 秒" />
+```
+
+### 毫秒级渲染
+
+倒计时默认每秒渲染一次，设置millisecond属性可以开启毫秒级渲染。
+
+<Image src="/imgs/countdown/milliseconds.jpg" />
+
+```jsx
+<CountDown time={time} format="HH:mm:ss:SSS" millisecond />	
+```
+
+### 自定义样式
+
+设置children可以自定义倒计时样式，需要通过onChange事件获取timeData对象并自行渲染，格式见下方表格。
+
+<Image src="/imgs/countdown/style.jpg" />
+
+```jsx
+<CountDown time={time} onChange={onChangeTimeData}>
+  {
+    timeData
+    &&
+    <>
+      <text>{timeData.days * 24 + timeData.hours}</text>
+      <text>{timeData.minutes}</text>
+      <text>{timeData.seconds}</text>
+    </>
+  }
+</CountDown>	
+```
+
+### 手动控制
+
+通过ref可以调用start、pause、reset方法。
+
+<Image src="/imgs/countdown/manual.jpg" />
+
+```jsx
+const ref = useRef()
+
+const onFinish = useMemoizedFn(() => {
+  Taro.showToast({
+    title: '倒计时已完成',
+    duration: 2000
+  })
+})
+
+const onStart = useMemoizedFn(() => {
+  ref.current.start()
+})
+
+const onPause = useMemoizedFn(() => {
+  ref.current.pause()
+})
+
+const onReset = useMemoizedFn(() => {
+  ref.current.reset()
+})
+
+<CountDown 
+  ref={ref}
+  time={10000}
+  autoStart={false}
+  format="HH:mm:ss"
+  onFinish={onFinish}
+/>
+
+<DemoSpace className={style.manuleActions}>
+  <Button type="primary" onClick={onStart}>开始</Button>
+  <Button type="danger" onClick={onPause}>暂停</Button>
+  <Button onClick={onReset}>重置</Button>
+</DemoSpace>
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| time | 倒计时时长，单位毫秒	 | _number_ | - |
+| format | 时间格式，DD-日，HH-时，mm-分，ss-秒，SSS-毫秒		 | _string_ | `HH:mm:ss` |
+| millisecond | 是否开启毫秒级渲染		 | _boolean_ | `false` |
+| autoStart | 是否自动开始倒计时			 | _boolean_ | `true` |
+</div>
+
+### Events
+
+<div class="table-container">
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onChange | 时间变化时触发，仅在自定义样式后才会触发	 | currentName: _string_ \| _number_ |
+| onFinish | 倒计时结束时触发		 | -  |
+</div>
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-count-down-text-color | 字体颜色 | `--czh-color-text` |
+| --czh-count-down-font-size | 字体大小 | `--czh-font-size-md` |
+| --czh-count-down-line-height | 字体行高 | `40px` |
+</div>

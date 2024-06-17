@@ -1,0 +1,30 @@
+import { normalizeImagePath } from 'rspress/runtime'
+import CzhDocVideo from '../../components/doc-video'
+
+# 介绍
+
+目前，我们的前端组已经统一使用React技术栈来开发pc，h5端应用，小程序端应用也统一采用了Taro+React来开发。先前一些应用大量使用了有赞开源的vant组件库，由于小程序端没有成熟的Taro React版本的Vant，所以，维健个人基于Taro以及vant，使用 React技术栈开发了一套开源的Taro版vant组件库，正好也可以在我们团队内部结合自己的ui设计要求使用。
+
+本组件库中的大多数组件基于维健个人开源的Taro React版的vant组件库进行了一些改造与定制，特别是灵活的css样式变量的支持，方便结合ui设计稿进行组件样式的定制。同时, 收集了日常小程序端业务开发中抽象出的一些可重用的基础UI组件以及业务组件，帮助前端小伙伴快速开发小程序用户界面，从而提高小程序的开发效率，质量，一致性以及后期维护性。
+
+希望团队中的小伙伴日常书写代码的过程中，提高代码质量以及封装程度，不要一遍一遍地写重复代码，没有意义以及难于维护。请抽象提炼出可重用的组件，贡献到本组件库中。
+
+## 预览
+
+暂时还没有注册演示本组件库的小程序，这里先附上一个演示视频，请小伙伴下载组件库以后，在本地编译后，使用微信开发者工具体验DEMO。
+
+<div class="czh-doc-video-container">
+  <CzhDocVideo
+    source={{src: normalizeImagePath('/videos/demo.mp4'), type: 'video/mp4'}}
+    options={{controls: true}}
+  />
+</div>
+
+## Bugs 
+
+如果要提交应用使用中发现的bug, 请小伙伴提交到gitlab上的issue中。并尽可能提供一切开发信息，因为信息越全面，开发响应速度越快，您发现的 bug 会被快速解决。
+
+## 功能新增
+
+如果小伙伴对现有的组件功能或者API有更好的想法， 请提交一个添加新功能的 issue。
+

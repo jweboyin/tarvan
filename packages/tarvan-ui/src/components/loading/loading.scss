@@ -1,0 +1,97 @@
+@use 'sass:math';
+@import '../../styles/functions/util.scss';
+@import '../../styles/variables.scss';
+
+$block: #{$prefix}-loading;
+
+.#{$block} {
+	--loading-spinner-color: var(--#{$block}-spinner-color, #{$loading-spinner-color});
+	--loading-spinner-size: var(--#{$block}-spinner-size, #{$loading-spinner-size});
+	--loading-spinner-animation-duration: var(
+		--#{$block}-spinner-animation-duration, 
+		#{$loading-spinner-animation-duration}
+	);
+	--loading-text-spacing: var(--#{$block}-text-spacing, var(--tan-padding-xs));
+	--loading-text-color: var(--#{$block}-text-color, #{$loading-text-color});
+	--loading-text-font-size: var(--#{$block}-text-font-size, #{$loading-text-font-size});
+	--loading-text-line-height: var(--#{$block}-text-line-height, #{$loading-text-line-height});
+
+	display: inline-flex;
+	align-items: center;
+  justify-content: center;
+	color: var(--loading-spinner-color);
+
+	&__spinner {
+		position: relative;
+    box-sizing: border-box;
+		width: var(--loading-spinner-size);
+		height: var(--loading-spinner-size);
+		max-width: 100%;
+    max-height: 100%;
+		animation: #{$prefix}-rotate var(--loading-spinner-animation-duration) linear infinite;
+
+		&.#{$block}__spinner--spinner {
+			animation-timing-function: steps(12);
+		}
+
+		&.#{$block}__spinner--circular {
+			border: 1px solid transparent;
+      border-top-color: currentColor;
+      border-radius: 100%;
+		}
+	}
+
+	&__text {
+		margin-left: var(--loading-text-spacing);
+		color: var(--loading-text-color);
+		font-size: var(--loading-text-font-size);
+		line-height: var(--loading-text-line-height);		
+
+		&:empty {
+			display: none;
+		}
+	}
+
+	&__dot {
+		position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    &::before {
+      display: block;
+      width: #{calculate(2px)};
+      height: 25%;
+      margin: 0 auto;
+      background-color: currentColor;
+      border-radius: 40%;
+      content: ' ';
+    }
+	}
+
+	&.#{$block}--vertical {
+		flex-direction: column;
+
+		.#{$block}__text {
+			margin-top: var(--loading-text-spacing);
+		}
+	}
+}
+
+@for $i from 1 through 12 {
+	.#{$block}__dot:nth-of-type(#{$i}) {
+		transform: rotate($i * 30deg);
+		opacity: 1 - math.div(0.75, 12) * ($i - 1);
+	}
+}
+
+@keyframes #{$prefix}-rotate {
+	from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

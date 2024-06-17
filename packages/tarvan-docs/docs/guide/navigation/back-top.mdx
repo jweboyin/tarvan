@@ -1,0 +1,59 @@
+import Image from '../../components/image'
+
+# BackTop 返回顶部
+
+### 介绍
+
+提供较长的页面快捷返回顶部功能。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { BackTop } from 'czh-weapp'
+```
+
+### 基础用法
+
+通过属性show来控制是否显示返回顶部按钮。
+
+<Image src="/imgs/back-top/basic.jpg" />
+
+```jsx
+<BackTop show />
+```
+
+### 隐藏文字 
+
+通过showText属性来控制是否显示文字。
+
+<Image src="/imgs/back-top/text.jpg" />
+
+```
+<BackTop showText={false} show />
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| show | 是否显示 | _boolean_ | `false` |
+| showText | 是否显示文字 | _boolean_ | `true` |
+</div>
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-back-top-right | 返回按钮定位的right值 | `40px` |
+| --czh-back-top-bottom | 返回按钮定位的bottom值 | `100px` |
+| --czh-back-top-background-color | 返回按钮背景颜色 | `--czh-color-black` |
+| --czh-back-top-text-color | 返回按钮定位的文字体颜色 | `--czh-color-white` |
+| --czh-back-top-icon-color | 返回按钮的图标颜色 | `--czh-color-white` |
+| --czh-back-top-icon-size | 返回按钮的图标大小 | `36px` |
+</div>

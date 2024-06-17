@@ -1,0 +1,96 @@
+import Image from '../../components/image'
+
+# Sticky 粘性布局
+
+### 介绍
+
+Sticky 组件与 CSS 中position: sticky属性实现的效果一致，当组件在屏幕范围内时，会按照正常的布局排列，当组件滚出屏幕范围时，始终会固定在屏幕顶部。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Sticky } from 'czh-weapp'
+```
+
+### 基础用法
+
+将内容包裹在Sticky组件内即可。
+
+<Image src="/imgs/sticky/basic.jpg" />
+
+```jsx
+<Sticky>
+  <Button type="primary">基础用法</Button>
+</Sticky>
+```
+
+### 吸顶距离
+
+通过offsetTop属性可以设置组件在吸顶时与顶部的距离。
+
+<Image src="/imgs/sticky/top.jpg" />
+
+```jsx
+<Sticky offsetTop={50}>
+  <Button type="primary">吸顶距离</Button>	
+</Sticky>
+```
+
+### 指定容器
+
+通过container属性可以指定组件的容器，页面滚动时，组件会始终保持在容器范围内，当组件即将超出容器底部时，会返回原位置。
+
+<Image src="/imgs/sticky/container.jpg" />
+
+```jsx
+import { useRef } from 'react
+
+const ref = useRef()
+
+<view ref={ref}>
+  <Sticky container={ref}>
+    <Button type="primary">指定容器</Button>
+  </Sticky>
+</view>
+```
+
+### 嵌套在scroll-view内使用
+
+通过 scrollTop 与 offsetTop 属性可以实现在 scroll-view 内嵌套使用。
+
+```jsx
+// 监听scroll, 设置offsetTop以及scrollTop，具体逻辑自己在应用里写吧
+<scroll-view
+  scroll-y
+>
+  <Sticky offsetTop={offsetTop} scrollTop={scrollTop}>
+    <Button type="primary" >嵌套用法</Button>	
+  </Sticky>	
+</scroll-view>
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| zIndex | 吸顶时的 z-index | _number_ | `99` |
+| offsetTop | 吸顶时与顶部的距离，单位px | _number_ | `0` |
+| scrollTop | 当前滚动区域的滚动位置，非 null 时会禁用页面滚动事件的监听| _number_ | - |
+| container | 容器的 ref | _React.RefObject_ | - |
+| disabled | 是否禁用滚动 | _boolean_ | `false` |
+| handleScrollWait | 滚动处理函数防抖延迟执行时间（毫秒） | _number_ | `30` |
+</div>
+
+### Events
+
+<div class="table-container">
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onScroll | 滚动时触发	 | \{ scrollTop: 距离顶部位置, isFixed: 是否吸顶 \} |
+</div>
+

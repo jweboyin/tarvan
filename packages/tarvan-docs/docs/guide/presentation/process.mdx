@@ -1,0 +1,83 @@
+import Image from '../../components/image'
+
+# Process 进度条
+
+### 介绍
+
+用于展示操作的当前进度。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Progress } from 'czh-weapp'
+```
+
+### 基础用法
+
+<Image src="/imgs/process/basic.jpg" />
+
+```html
+<Progress percentage={30} />	
+```
+
+### 置灰
+
+设置inactive属性后进度条将置灰。
+
+<Image src="/imgs/process/gray.jpg" />
+
+```html
+<Progress 
+  percentage={50}
+  inactive 
+/>
+```
+
+### 自定义样式
+
+通过设置css变量来自定义样式
+
+<Image src="/imgs/process/custom.jpg" />
+
+```html
+<Progress 
+  percentage={55}
+  pivotText="紫色渐变"
+  style={{
+    '--czh-progress-portion-color': 'linear-gradient(to right, #be99ff, #7232dd)',
+    '--czh-progress-pivot-background-color': '#7232dd'
+  }}
+/>
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| percentage | 进度百分比		| _number_ | `0` |
+| inactive | 是否置灰		 | _boolean_ | `false` |
+| pivotText | 文字显示			 | _string_ | `百分比文字` |
+| showPivot | 是否显示进度文字				 | _boolean_ | `true` |
+</div>
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-progress-height | 进度条height | `8px` |
+| --czh-progress-background-color | 进度条背景颜色 | `--czh-color-gray-3` |
+| --czh-progress-portion-color | 已完成部分进度条颜色 | `--czh-color-blue` |
+| --czh-progress-portion-inactive-color | 已完成部分进度条置灰后的颜色 | `#cacaca` |
+| --czh-progress-portion-transition-duration | 已完成部分进度条动画duration | `0.5s` |
+| --czh-progress-pivot-text-color | 进度文字颜色 | `--czh-color-white` |
+| --czh-progress-pivot-font-size | 进度文字大小 | `--czh-font-size-xs` |
+| --czh-progress-pivot-line-height | 进度文字行高 | `1.6` |
+| --czh-progress-pivot-background-color | 进度文字区域背景颜色 | `--czh-color-blue` |
+| --czh-progress-pivot-padding | 进度文字区域padding | `0 10px` |
+</div>

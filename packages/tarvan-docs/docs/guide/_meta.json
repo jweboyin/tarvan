@@ -1,0 +1,49 @@
+[
+	{
+    "type": "dir",
+    "name": "start",
+    "label": "开发指南"
+  },
+
+  {
+    "type": "dir",
+    "name": "basic",
+    "label": "基础组件"
+  },
+
+  {
+    "type": "dir",
+    "name": "layout",
+    "label": "布局组件"
+  },
+
+  {
+    "type": "dir",
+    "name": "form",
+    "label": "表单组件"
+  },
+
+  {
+    "type": "dir",
+    "name": "feedback",
+    "label": "反馈组件"
+  },
+
+  {
+    "type": "dir",
+    "name": "presentation",
+    "label": "展示组件"
+  },
+
+  {
+    "type": "dir",
+    "name": "navigation",
+    "label": "导航组件"
+  },
+
+  {
+    "type": "dir",
+    "name": "business",
+    "label": "业务组件"
+  }
+]

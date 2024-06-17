@@ -1,0 +1,170 @@
+import Image from '../../components/image'
+
+# Tabbar 标签栏
+
+### 介绍
+
+底部导航栏，用于在不同页面之间进行切换。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Tabbar } from 'czh-weapp'
+```
+
+### 基础用法
+
+默认情况下，通过标签索引进行匹配。通过onChange属性来处理标签切换。
+
+<Image src="/imgs/tabbar/basic.jpg" />
+
+```jsx
+const [active, setActive] = useState(0)
+
+const onChange = useMemoizedFn((event) => {
+  setActive( event.detail)
+})
+
+<Tabbar 
+  active={active} 
+  onChange={onChange}
+>
+  <TabbarItem icon="wap-home-o">标签</TabbarItem>	
+  <TabbarItem icon="cluster-o">标签</TabbarItem>	
+  <TabbarItem icon="shop-o">标签</TabbarItem>	
+  <TabbarItem icon="setting-o">标签</TabbarItem>	
+</Tabbar>
+```
+
+### 通过名称匹配
+
+在标签指定name属性的情况下，值为当前标签的name。
+
+<Image src="/imgs/tabbar/name.jpg" />
+
+```jsx
+<Tabbar 
+  active="shop"
+>
+  <TabbarItem name="home" icon="wap-home-o">标签</TabbarItem>	
+  <TabbarItem name="cluster" icon="cluster-o">标签</TabbarItem>	
+  <TabbarItem name="shop" icon="shop-o">标签</TabbarItem>	
+  <TabbarItem name="setting" icon="setting-o">标签</TabbarItem>	
+</Tabbar>
+```
+
+### 显示徽标
+
+通过标签上的dot \| info属性可以在标签上显示对应的徽标。
+
+<Image src="/imgs/tabbar/info.jpg" />
+
+```jsx
+<Tabbar 
+  active={0}
+>
+  <TabbarItem icon="wap-home-o">标签</TabbarItem>	
+  <TabbarItem icon="cluster-o" dot>标签</TabbarItem>	
+  <TabbarItem icon="shop-o" info="5">标签</TabbarItem>	
+  <TabbarItem icon="setting-o" info="20">标签</TabbarItem>	
+</Tabbar>
+```
+
+### 自定义图标
+
+可以通过icon, iconActive属性来自定义图标，其中 icon 代表未选中状态下的图标，iconActive代表选中状态下的图标。
+
+<Image src="/imgs/tabbar/icon.jpg" />
+
+```jsx
+<Tabbar 
+  active={0}
+  safeAreaInsetBottom={false}
+  fixed={false}
+  onChange={onChange}
+>
+  <TabbarItem 
+    info="3"
+    icon={
+      <image 
+        src="https://img.yzcdn.cn/vant/user-active.png"
+        mode="aspectFit" 
+        style={{width: '20px', height: '12px'}}
+      />
+    }
+    iconActive={
+      <image 
+        src="https://img.yzcdn.cn/vant/user-inactive.png"
+        mode="aspectFit" 
+        style={{width: '20px', height: '12px'}}
+      />
+    }
+  >
+    自定义
+  </TabbarItem>
+
+  <TabbarItem icon="cluster-o" dot>标签</TabbarItem>	
+  <TabbarItem icon="shop-o" info="5">标签</TabbarItem>	
+  <TabbarItem icon="setting-o" info="20">标签</TabbarItem>	
+</Tabbar>
+```
+
+### 自定义颜色
+
+可以通过activeColor以及inactiveColor属性来自定义颜色。
+
+<Image src="/imgs/tabbar/color.jpg" />
+
+```jsx
+<Tabbar
+  activeColor="#07c160"
+  inactiveColor="#000"
+  active={0}
+>
+  <TabbarItem icon="wap-home-o">标签</TabbarItem>	
+  <TabbarItem icon="cluster-o">标签</TabbarItem>	
+  <TabbarItem icon="shop-o">标签</TabbarItem>	
+  <TabbarItem icon="setting-o">标签</TabbarItem>	
+</Tabbar>
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| active | 当前选中标签的 | _string_ \| _number_ | - |
+| fixed | 是否固定在底部	 | _boolean_ | `true` |
+| placeholder | 是否固定在底部	 | _boolean_ | `false` |
+| activeColor | 选中标签的颜色		 | _string_ | `#1989fa` |
+| inactiveColor | 未选中标签的颜色		 | _string_ | `#7d7e80` |
+| border | 是否展示外边框			 | _boolean_ | `true` |
+| zIndex | 元素 z-index			 | _number_ | `1` |
+| safeAreaInsetBottom | 是否为 iPhoneX等留出底部安全距离 | _boolean_ | `true` |
+</div>
+
+### Events
+
+<div class="table-container">
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onChange | 切换标签时触发		 | `event.detail: 当前选中标签的名称或索引值` |
+</div>
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-tabbar-height | 标签栏高度 | `100px` |
+| --czh-tabbar-background-color | 标签栏背景颜色 | `--czh-color-white` |
+| --czh-tabbar-item-color | 标签项的字体颜色 | `--czh-color-gray-7` |
+| --czh-tabbar-item-line-height | 标签项的行高 | `1` |
+| --czh-tabbar-item-icon-size | 标签项图标的大小 | `44px` |
+| --czh-tabbar-item-icon-margin-top | 标签项图标的margin-bottom | `8px` |
+| --czh-tabbar-item-icon-margin-top | 标签项图标的margin-top | `4px` |
+</div>

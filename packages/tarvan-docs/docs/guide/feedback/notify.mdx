@@ -1,0 +1,105 @@
+import Image from '../../components/image'
+
+# Notify 消息通知
+
+### 介绍
+
+在页面顶部展示消息提示，支持函数调用和组件调用两种方式。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Notify } from 'czh-weapp'
+```
+
+### 基础用法
+
+在页面中添加Notify组件，并调用open方法即可打开通知。
+
+<Image src="/imgs/notify/basic.jpg" />
+
+```jsx
+Notify.open({
+  message: '通知内容'
+})
+
+<Notify />
+```
+
+### 通知类型
+
+支持primary、success、warning、danger四种通知类型，默认为danger。
+
+<Image src="/imgs/notify/type.jpg" />
+
+```jsx
+Notify.open({
+  type: 'success',
+  message: '通知内容',
+})	
+```
+
+### 自定义通知
+
+自定义消息通知的颜色和展示时长。
+
+<Image src="/imgs/notify/custom.jpg" />
+
+```jsx
+Notify.open({
+  color: '#ad0000',
+  background: '#ffe1e1',
+  message: '自定义颜色'
+})		
+
+Notify.open({
+  message: '自定义时长1秒',
+  duration: 1000
+})	
+```
+
+### 留出顶部安全距离
+
+通过safeAreaInsetTop设为true,  留出顶部安全距离
+
+```jsx
+Notify.open({
+  safeAreaInsetTop: true,
+  message: '通知内容'
+})	
+```
+
+## API
+
+### Options
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| type | 类型，可选值为 primary \| success \| warning	| _string_ | `danger` |
+| message | 展示文案，支持通过\n换行	| _string_ | - |
+| duration | 展示时长(ms)，值为 0 时，notify 不会消失	| _number_ | `3000` |
+| background | 背景颜色		| _string_ | `3000` |
+| safeAreaInsetTop | 是否留出顶部安全距离（状态栏高度）		| _boolean_ | `false` |
+| onClick | 点击时的回调函数		| _Function_ | - |
+| onOpened | 完全展示后的回调函数		| _Function_ | - |
+| onClose | 关闭时的回调函数		| _Function_ | - |
+</div>
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-notify-top | 定位top值 | `0` |
+| --czh-notify-z-index | z-index值 | `110` |
+| --czh-notify-content-padding | 内容区域padding | `12px 30px` |
+| --czh-notify-content-font-size | 内容字体大小 | `30px` |
+| --czh-notify-content-line-height | 内容行高 | `40px` |
+| --czh-notify-primary-color | 类型为primary的颜色 | `--czh-color-blue` |
+| --czh-notify-success-color | 类型为success的颜色 | `--czh-color-green` |
+| --czh-notify-danger-color | 类型为danger的颜色 | `--czh-color-red` |
+| --czh-notify-warning-color | 类型为warning的颜色 | `--czh-color-red` |
+</div>

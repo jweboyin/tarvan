@@ -1,0 +1,151 @@
+import Image from '../../components/image'
+
+# Collapse 折叠面板
+
+### 介绍
+
+将一组内容放置在多个折叠面板中，点击面板的标题可以展开或收缩其内容。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Collapse, CollapseItem } from 'czh-weapp'
+```
+
+### 基础用法
+
+通过value控制展开的面板列表，activeNames为数组格式。
+
+<Image src="/imgs/collapse/basic.jpg" />
+
+```jsx
+<Collapse 
+  value={value} 
+  onChange={onChange}
+>
+  <CollapseItem 
+    title="标题1"
+    name={1}
+  >提供多样店铺模板，快速搭建网上商城</CollapseItem>
+
+  <CollapseItem 
+    title="标题2"
+    name={2}
+  >网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失</CollapseItem>
+
+  <CollapseItem 
+    title="标题3"
+    name={3}
+    disabled
+  >线上拓客，随时预约，贴心顺手的开单收银</CollapseItem>
+</Collapse>	
+```
+
+### 手风琴
+
+通过accordion可以设置为手风琴模式，最多展开一个面板，此时activeName为字符串格式。
+
+<Image src="/imgs/collapse/accordion.jpg" />
+
+```jsx
+<Collapse 
+  value={value} 
+  accordion
+  onChange={onChange}
+>	
+  <CollapseItem 
+    title="标题1"
+    name={1}
+  >提供多样店铺模板，快速搭建网上商城</CollapseItem>	
+
+  <CollapseItem 
+    title="标题2"
+    name={2}
+  >网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失</CollapseItem>	
+</Collapse>
+```
+
+### 自定义标题与图标
+
+通过title以及icon属性来控制标题以及图标
+
+<Image src="/imgs/collapse/custom.jpg" />
+
+```jsx
+<Collapse 
+  value={value} 
+  onChange={onChange}
+>	
+  <CollapseItem 
+    title={
+      <Space align="center">
+        <view>提供多样店铺模板，快速搭建网上商城</view>
+        <Icon name="question-o" />
+      </Space>
+    }
+    name={1}
+  >提供多样店铺模板，快速搭建网上商城</CollapseItem>	
+
+  <CollapseItem 
+    title="自定义图标"
+    icon={<Icon name="success" />}
+    value="内容"
+    name={2}
+  >提供多样店铺模板，快速搭建网上商城</CollapseItem>	
+</Collapse>
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| value | 当前展开面板的 name | 非手风琴模式：(_string_ \| _number_)[]; 手风琴模式：_string_ \| _number_ | - |
+| accordion | 是否开启手风琴模式	 | _boolean_ | `false` |
+| border | 是否显示外边框		 | _boolean_ | `true` |
+</div>
+
+### CollapseItem Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| name | 唯一标识符，默认为索引值		 | _string_ \| _number_ | `index` |
+| title | 标题栏左侧内容 | _ReactNode_ | - |
+| icon | 标题栏左侧图标名，图片文件名或图片链接，可选值见 Icon 组件 | _string_ | - |
+| rightIcon | 右侧图标名，图片文件名或图片链接，可选值见 Icon 组件 | _string_ | - |
+| value | 标题栏右侧内容	 | _string_ \| _number_ | - |
+| label | 标题栏描述信息	 | _string_ | - |
+| disabled | 是否禁用面板		 | _boolean_ | `false` |
+| clickable | 是否开启点击反馈			 | _boolean_ | `false` |
+| border | 是否显示内边框				 | _boolean_ | `true` |
+</div>
+
+### Events
+
+<div class="table-container">
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onOpen | 展开面板时触发	 | currentName: _string_ \| _number_ |
+| onClose | 关闭面板时触发		 | currentName: _string_ \| _number_ |
+| onChange | 切换面板时触发			 | activeNames: _string_ \| _Array_ |
+</div>
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-collapse-item-transition-duration | transition动画duration | `0.3s` |
+| --czh-collapse-item-title-disabled-color | 禁用状态标题栏左侧内容字体颜色 | `--czh-color-gray-5` |
+| --czh-collapse-item-content-horizontal-padding | 标题栏右侧内容左右padding | `30px` |
+| --czh-collapse-item-content-vertical-padding | 标题栏右侧内容内上下padding | `30px` |
+| --czh-collapse-item-content-font-size | 标题栏右侧内容字体大小 | `26px` |
+| --czh-collapse-item-content-line-height | 标题栏右侧内容字体行高 | `1.5` |
+| --czh-collapse-item-content-text-color | 标题栏右侧内容字体颜色 | `--czh-color-gray-6` |
+| --czh-collapse-item-content-background-color | 标题栏右侧内容背景颜色 | `--czh-color-white` |
+</div>

@@ -1,0 +1,148 @@
+import Image from '../../components/image'
+
+# Navbar 导航栏
+
+### 介绍
+
+为页面提供导航功能，常用于页面顶部。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { AppNavBar } from 'czh-weapp'
+```
+
+### 基础用法
+
+通过title属性定义导航栏标题。
+
+<Image src="/imgs/navbar/basic.jpg" />
+
+```jsx
+<AppNavBar 
+  title="NarBar 导航栏"
+/>
+```
+
+### 设置主题
+
+通过theme属性设置导航栏主题，默认有white，blue两种主题。
+
+<Image src="/imgs/navbar/blue.jpg" />
+
+```jsx
+<AppNavBar 
+  title="NarBar 导航栏"
+  theme="blue"
+/>
+```
+
+### 是否显示返回按钮
+
+通过backable属性控制是否显示返回按钮。
+
+<Image src="/imgs/navbar/backable.jpg" />
+
+```jsx
+<AppNavBar 
+  title="NarBar 导航栏"
+  backable={false}
+/>
+```
+
+### 是否显示首页按钮
+
+通过showHome属性控制是否显示首页按钮。
+
+<Image src="/imgs/navbar/home.jpg" />
+
+```jsx
+<AppNavBar 
+  title="NarBar 导航栏"
+  showHome={false}
+/>
+```
+
+### 是否显示logo
+
+通过showLogo属性控制是否显示logo。
+
+<Image src="/imgs/navbar/logo.jpg" />
+
+```jsx
+<AppNavBar 
+  title="NarBar 导航栏"
+  showLogo
+/>
+```
+
+### 是否显示搜索
+
+通过showSearch属性控制是否显示搜索按钮。
+
+<Image src="/imgs/navbar/search.jpg" />
+
+```jsx
+<AppNavBar 
+  title="NarBar 导航栏"
+  showSearch
+/>
+```
+
+### 自定义导航栏背景色
+
+通过className或者style属性设置css变量来自定义导航栏背景色。
+
+<Image src="/imgs/navbar/background.jpg" />
+
+```jsx
+<AppNavBar 
+  title="NarBar 导航栏"
+  style={{
+    '--czh-navbar-bg-color': '#00b578'
+  }}
+/>
+```
+
+###
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| title | 标题 | _string_ | - |
+| theme | 主题，可选值为white \| blue | _string_ | `white` |
+| backable | 是否显示返回按钮 | _boolean_ | `true` |
+| showHome | 是否显示首页按钮 | _boolean_ | `true` |
+| showLogo | 是否显示logo | _boolean_ | `false` |
+| showSearch | 是否显示搜索按钮 | _boolean_ | `false` |
+| zIndex | zIndex值 | _number_ | `9` |
+</div>
+
+### Events
+
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onSearch | 点击搜索按钮触发 | - |
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-navbar-bg-color | 默认背景色 | `--czh-color-white` |
+| --czh-navbar-title-color | 标题的默认字体颜色 | `--czh-color-black` |
+| --czh-navbar-title-size | 标题的默认字体大小 | `34px` |
+| --czh-navbar-title-weight | 标题的默认字体粗细程度 | `600` |
+| --czh-navbar-title-font-size | 主题为white时标题的字体颜色 | `--czh-color-black` |
+| --czh-navbar-theme-blue-bg-color | 主题为blue时的背景色 | `--czh-color-primary` |
+| --czh-navbar-theme-blue-title-color | 主题为blue时标题的字体颜色 | `--czh-color-white` |
+| --czh-navbar-logo-size | logo的大小 | `38px` |
+| --czh-navbar-logo-margin | logo的margin值 | `3px 12px 0 0 ` |
+| --czh-navbar-left-gruoped-block-bg-clor | 左侧按钮组的背景颜色 | `--czh-color-white` |
+</div>

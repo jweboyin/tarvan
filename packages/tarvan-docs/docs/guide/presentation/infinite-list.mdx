@@ -1,0 +1,160 @@
+import Image from '../../components/image'
+
+# InfiniteList 滚动加载列表
+
+### 介绍
+
+列表滚动到底部自动加载更多数据。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { InfiniteList } from 'czh-weapp'
+```
+
+### 基础用法
+
+列表显示的容器组件需要设置一个固定的高度值。
+
+<Image src="/imgs/infinite-list/basic.jpg" />
+
+```jsx
+import { useMemoizedFn } from 'ahooks'
+import style from './basic.module.scss'
+
+const data = [
+	'A',
+	'B',
+	'C',
+	'D',
+	'E',
+	'F',
+	'G',
+	'H',
+	'I',
+	'J',
+	'K',
+	'L',
+	'M',
+	'N',
+	'O',
+	'P',
+	'Q',
+  'R',
+  'S',
+  'T',
+  'U',
+  'V',
+  'W',
+  'X',
+  'Y',
+  'Z'
+]
+
+const loadMore = useMemoizedFn(async (page, size) => {
+	const start = (page - 1) * size
+    const end = page * size
+
+    await new Promise(r => setTimeout(r, 2000))
+
+    const list = data.slice(start, end)
+
+    return {
+      success: true,
+      total: data.length,
+      data: list
+    }
+})
+
+<view className={style.list}>
+	<InfiniteList loadMore={loadMore} >
+	{
+		list => {
+			return (
+				<>
+					{
+						list.map(item => {
+							return (
+								<view className={style.item}>{item}</view>
+							)
+						})
+					}	
+				</>
+			)
+		}
+	}
+	</InfiniteList>	
+</view>
+```
+
+```scss title="basic.module.scss"
+.list {
+	height: 400px;
+	background: #FFFFFF;
+}
+```
+
+### 自定义文案
+
+通过loadingText, finishedText, emptyText, reloadText属性来自定义底部各种状态的文案。
+
+<Image src="/imgs/infinite-list/custom.jpg" />
+
+```jsx
+<InfiniteList 
+	loadMore={loadList} 
+	loadingText="拼命加载中"
+	finishedText="我也是有底线的"
+>
+{
+	list => {
+		return (
+			<>
+				{
+					list.map(item => {
+						return (
+							<Space 
+								justify="center"
+								align="center"
+								className={style.item}
+								block
+							>{item}</Space>
+						)
+					})
+				}	
+			</>
+		)
+	}
+}
+</InfiniteList>	
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| pageSize | 每页显示的条数 | _number_ | `10` |
+| loadingText | 正在加载文案 | _string_ | `加载中...` |
+| finishedText | 加载完成文案 | _string_ | `没有更多了` |
+| emptyText | 没有数据文案 | _string_ | `暂无数据~` |
+| reloadText | 请求失败，重新加载文案 | _string_ | `请求失败，点击重新加载` |
+| loadMore | 加载列表函数，返回当页列表数据即可 | _Function_ | - |
+</div>
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-infinite-list-status-block-height | 底部状态区块高度 | `120px` |
+| --czh-infinite-list-status-block-color | 底部状态区块字体颜色 | `#999999` |
+| --czh-infinite-list-status-block-font-size | 底部状态区块字体大小 | `--czh-font-size-md` |
+| --czh-infinite-list-loading-padding | 底部加载区块padding | `15px` |
+| --czh-infinite-list-loading-size | 底部加载图标大小 | `32px` |
+| --czh-infinite-list-loading-text-font-size | 底部加载文案字体大小 | `--czh-font-size-md` |
+</div>

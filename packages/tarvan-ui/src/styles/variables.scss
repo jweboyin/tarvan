@@ -1,0 +1,447 @@
+@import './functions/util.scss';
+
+$prefix: 'tan';
+
+// Component Colors
+$disabled-opacity: 0.5;
+
+// Icon
+$icon-size: #{calculate(18px)};
+$icon-color: #323233;
+
+// Cell
+$cell-horizontal-padding: var(--#{$prefix}-padding-md);
+$cell-vertical-padding: #{calculate(10px)};
+$cell-font-size: var(--#{$prefix}-font-size-md);
+$cell-line-height: #{calculate(24px)};
+$cell-text-color: var(--#{$prefix}-color-text);
+$cell-background-color: var(--#{$prefix}-color-white);
+$cell-border-color: var(--#{$prefix}-border-color);
+$cell-title-font-weight: 400;
+$cell-label-margin-top: #{calculate(3px)};
+$cell-label-font-size: var(--#{$prefix}-font-size-sm);
+$cell-label-font-weight: 400;
+$cell-label-line-height: #{calculate(18px)};
+$cell-label-color: var(--#{$prefix}-color-gray-6);
+$cell-value-color: var(--#{$prefix}-color-gray-6);
+$cell-icon-size: #{calculate(16px)};
+$cell-required-left: var(--#{$prefix}-padding-xs);
+$cell-required-color: var(--#{$prefix}-color-red);
+$cell-actived-color: var(--#{$prefix}-color-active);
+$cell-left-icon-margin-right: var(--#{$prefix}-padding-base);
+$cell-right-icon-margin-left: var(--#{$prefix}-padding-base);
+$cell-right-icon-color: var(--#{$prefix}-color-gray-6);
+$cell-large-vertical-padding: var(--#{$prefix}-padding-sm);
+$cell-large-title-font-size: var(--#{$prefix}-font-size-lg);
+$cell-large-value-font-size: var(--#{$prefix}-font-size-lg);
+$cell-large-label-font-size: var(--#{$prefix}-font-size-md);
+
+// CellGroup
+$cell-group-title-color: var(--#{$prefix}-color-gray-6);
+$cell-group-title-padding: var(--#{$prefix}-padding-md) var(--#{$prefix}-padding-md) var(--#{$prefix}-padding-xs);
+$cell-group-title-font-size: var(	--#{$prefix}-font-size-md);
+$cell-group-title-line-height: #{calculate(16px)};
+$cell-group-inset-title-padding: var(--#{$prefix}-padding-md) var(--#{$prefix}-padding-md) var(--#{$prefix}-padding-xs) var(--#{$prefix}-padding-xl);
+$cell-group-inset-padding: 0 var(--#{$prefix}-padding-md);
+$cell-group-inset-border-radius: var(--#{$prefix}-border-radius-lg);
+
+// Info
+$info-size: #{calculate(16px)};
+$info-color: var(--#{$prefix}-color-white);
+$info-padding: 0 #{calculate(3px)};
+$info-font-size: #{calculate(12px)};
+$info-font-weight: 500;
+$info-border-width: 1px;
+$info-background-color: var(--#{$prefix}-color-red);
+$info-dot-color: var(--#{$prefix}-color-red);
+$info-dot-size: #{calculate(8px)};
+$info-font-family: -apple-system-font, Helvetica Neue, Arial, sans-serif;
+
+// Loading
+$loading-spinner-color: var(--#{$prefix}-color-gray-5); 
+$loading-spinner-size: #{calculate(30px)};
+$loading-spinner-animation-duration: 0.8s;
+$loading-text-color: var(--#{$prefix}-color-gray-6);
+$loading-text-font-size: var(--#{$prefix}-font-size-md);
+$loading-text-line-height: #{calculate(20px)};
+
+// Button
+$button-mini-height: #{calculate(22px)};
+$button-mini-min-width: #{calculate(50px)};
+$button-mini-font-size: var(--#{$prefix}-font-size-xs);
+$button-small-height: #{calculate(30px)};
+$button-small-font-size: var(--#{$prefix}-font-size-sm);
+$button-small-min-width: #{calculate(60px)};
+$button-normal-font-size: var(--#{$prefix}-font-size-md);
+$button-normal-padding: 0 #{calculate(15px)};
+$button-large-height: #{calculate(50px)};
+$button-default-color: var(--#{$prefix}-color-text);
+$button-default-height: #{calculate(44px)};
+$button-default-font-size: var(--#{$prefix}-font-size-lg);
+$button-default-background-color: var(--#{$prefix}-color-white);
+$button-default-border-color: var(--#{$prefix}-border-color);
+$button-primary-color: var(--#{$prefix}-color-white);
+$button-primary-background-color: var(--#{$prefix}-color-green);
+$button-primary-border-color: var(--#{$prefix}-color-green);
+$button-info-color: var(--#{$prefix}-color-white);
+$button-info-background-color: var(--#{$prefix}-color-blue);
+$button-info-border-color: var(--#{$prefix}-color-blue);
+$button-danger-color: var(--#{$prefix}-color-white);
+$button-danger-background-color: var(--#{$prefix}-color-red);
+$button-danger-border-color: var(--#{$prefix}-color-red);
+$button-warning-color: var(--#{$prefix}-color-white);
+$button-warning-background-color: var(--#{$prefix}-color-orange);
+$button-warning-border-color: var(--#{$prefix}-color-orange);
+$button-line-height: #{calculate(20px)};
+$button-border-width: 1px;
+$button-border-radius: var(--#{$prefix}-border-radis-sm);
+$button-round-border-radius: var(--#{$prefix}-border-radius-max);
+$button-plain-background-color: var(--#{$prefix}-color-white);
+$button-disabled-opacity: 0.5;
+$button-default-height: #{calculate(44px)};
+$button-loading-size: #{calculate(20px)};
+$button-loading-color: var(--#{$prefix}-color-white);
+$button-plain-loading-color: '#c9c9c9';
+
+// NavBar
+$nav-bar-height: #{calculate(46px)};
+$nav-bar-background-color: var(--#{$prefix}-color-white);
+$nav-bar-arrow-size: #{calculate(16px)};
+$nav-bar-icon-color: var(--#{$prefix}-color-gray-5);
+$nav-bar-text-color: var(--#{$prefix}-color-gray-5);
+$nav-bar-title-font-size: var(--#{$prefix}-font-size-lg);
+$nav-bar-title-text-color: var(--#{$prefix}-color-text);
+
+// Image
+$image-placeholder-text-color: var(--#{$prefix}-color-gray-6);
+$image-placeholder-font-size: var(--#{$prefix}-font-size-md);
+$image-placeholder-background-color: var(--#{$prefix}-color-gray-1);
+$image-loading-icon-color: var(--#{$prefix}-color-gray-4);
+$image-loading-icon-size: #{calculate(32px)};
+$image-error-icon-size: #{calculate(32px)};
+$image-error-icon-color: var(--#{$prefix}-color-gray-4);
+
+// Field
+$field-label-color: var(--#{$prefix}-color-gray-7);
+$field-input-text-color: var(--#{$prefix}-color-text);
+$field-input-error-text-color: var(--#{$prefix}-color-red);
+$field-input-disabled-text-color: var(--#{$prefix}-color-gray-5);
+$field-placeholder-text-color: var(--#{$prefix}-color-gray-5);
+$field-icon-size: #{calculate(16px)};
+$field-clear-icon-size: #{calculate(16px)};
+$field-clear-icon-color: var(--#{$prefix}-color-gray-5);
+$field-icon-container-color: var(--#{$prefix}-color-gray-6);
+$field-error-message-color: var(--#{$prefix}-color-red);
+$field-error-message-text-font-size: var(--#{$prefix}-font-size-sm);
+$field-text-area-min-height: #{calculate(18px)};
+$field-word-limit-color: var(--#{$prefix}-color-gray-7);
+$field-word-limit-font-size: var(--#{$prefix}-font-size-sm);
+$field-word-limit-line-height: #{calculate(16px)};
+$field-word-num-full-color: var(--#{$prefix}-color-red);
+$field-disabled-text-color: var(--#{$prefix}-color-gray-5);
+$field-label-width: 6.2em;
+$field-label-font-size: 28px;
+$field-label-font-weight: 400;
+
+// Empty
+$empty-vertical-padding: var(--#{$prefix}-padding-xl);
+$empty-horizontal-padding: 0;
+$empty-image-size: #{calculate(160px)};
+$empty-description-margin-top: var(--#{$prefix}-padding-md);
+$empty-description-vertical-padding: 0;
+$empty-description-horizontal-padding: #{calculate(60px)};
+$empty-description-color: var(--#{$prefix}-color-gray-6);
+$empty-description-font-size: #{calculate(14px)};
+$empty-description-line-height: #{calculate(20px)};
+$empty-bottom-margin-top: #{calculate(24px)};
+
+// Overlay
+$overlay-background-color: rgba(0, 0, 0, 0.7);
+
+// Toast
+$toast-max-width: 70%;
+$toast-font-size: #{calculate(14px)};
+$toast-text-color: var(--#{$prefix}-color-white);
+$toast-line-height: #{calculate(20px)};
+$toast-border-radius: var(--#{$prefix}-border-radius-lg);
+$toast-background-color: opacify(#000, 0.7);
+$toast-icon-size: #{calculate(36px)};
+$toast-text-min-width: #{calculate(96px)};
+$toast-text-padding: var(--#{$prefix}-padding-xs) var(--#{$prefix}-padding-sm);
+$toast-default-padding: var(--#{$prefix}-padding-md);
+$toast-default-width: #{calculate(88px)};
+$toast-default-min-height: #{calculate(88px)};
+$toast-overlay-background-color: transparent;
+
+// Popup
+$popup-background-color: var(--#{$prefix}-color-white);
+$popup-round-border-radius: #{calculate(16px)};
+$popup-close-icon-size: #{calculate(18px)};
+$popup-close-icon-color: var(--#{$prefix}-color-gray-6);
+$popup-close-icon-margin: #{calculate(16px)};
+$popup-close-icon-z-index: 1;
+
+// Dialog
+$dialog-width: #{calculate(320px)};
+$dialog-small-screen-width: 90%;
+$dialog-font-size: var(--#{$prefix}-font-size-lg);
+$dialog-border-radius: #{calculate(16px)};
+$dialog-background-color: var(--#{$prefix}-color-white);
+$dialog-header-font-weight: var(--#{$prefix}-font-weight-bold);
+$dialog-header-line-height: #{calculate(24px)};
+$dialog-header-padding-top: var(--#{$prefix}-padding-lg);
+$dialog-header-isolated-padding: var(--#{$prefix}-padding-lg) 0;
+$dialog-message-padding: var(--#{$prefix}-padding-lg);
+$dialog-message-font-size: var(--#{$prefix}-font-size-md);
+$dialog-message-line-height: #{calculate(20px)};
+$dialog-message-max-height: 60vh;
+$dialog-has-title-message-text-color: var(--#{$prefix}-color-gray-7);
+$dialog-has-title-message-padding-top: var(--#{$prefix}-padding-xs);
+$dialog-confirm-button-color: var(--#{$prefix}-color-red);
+$dialog-cancel-button-color: var(--#{$prefix}-color-gray-8);
+
+// Collapse
+$collapse-item-transition-duration: 0.3s;
+$collapse-item-content-horizontal-padding: #{calculate(15px)};
+$collapse-item-content-vertical-padding: #{calculate(15px)};
+$collapse-item-content-font-size: #{calculate(13px)};
+$collapse-item-content-line-height: 1.5;
+$collapse-item-content-text-color: var(--#{$prefix}-color-gray-6);
+$collapse-item-content-background-color: var(--#{$prefix}-color-white);
+$collapse-item-title-disabled-color: var(--#{$prefix}-color-gray-5);
+
+// Search
+$search-background-color: var(--#{$prefix}-color-white);
+$search-content-background-color: var(--#{$prefix}-color-gray-1);
+$search-padding: #{calculate(10px)} var(--#{$prefix}-padding-sm);
+$search-input-height: #{calculate(34px)};
+$search-label-padding: 0 #{calculate(5px)};
+$search-label-color: var(--#{$prefix}-color-text);
+$search-label-font-size: var(--#{$prefix}-font-size-md);
+$search-left-icon-color: var(--#{$prefix}-color-gray-6);
+$search-action-padding: 0 var(--#{$prefix}-padding-xs);
+$search-action-text-color: var(--#{$prefix}-color-text);
+$search-action-font-size: var(--#{$prefix}-font-size-md);
+
+// TabBar
+$tabbar-height: #{calculate(50px)};
+$tabbar-background-color: var(--#{$prefix}-color-white);
+
+// TabBar-Item
+$tabbar-item-font-size: var(--#{$prefix}-font-size-sm);
+$tabbar-item-text-color: var(--#{$prefix}-color-gray-7);
+$tabbar-item-active-color: var(--#{$prefix}-color-blue);
+$tabbar-item-line-height: 1;
+$tabbar-item-icon-font-size: #{calculate(22px)};
+$tabbar-item-icon-margin-bottom: #{calculate(4px)};
+$tabbar-item-info-margin-top: #{calculate(2px)};
+
+// Uploader
+$uploader-size: #{calculate(80px)};
+$uploader-margin: 0 var(--#{$prefix}-padding-xs) var(--#{$prefix}-padding-xs) 0;
+$uploader-icon-size: #{calculate(24px)};
+$uploader-icon-color: var(--#{$prefix}-color-gray-4);
+$uploader-text-color: var(--#{$prefix}-color-gray-6);
+$uploader-text-font-size: var(--#{$prefix}-font-size-sm);
+$uploader-text-margin: var(--#{$prefix}-padding-xs) 0 0 0;
+$uploader-background-color: var(--#{$prefix}-color-gray-1);
+$uploader-active-color: var(--#{$prefix}-color-active);
+$uploader-delete-color: var(--#{$prefix}-color-white);
+$uploader-delete-icon-size: #{calculate(14px)};
+$uploader-delete-background-color: rgba(0, 0, 0, 0.7);
+$uploader-delete-border-radius: 0 0 0 #{calculate(12px)};
+$uploader-file-background-color: var(--#{$prefix}-color-gray-1);
+$uploader-file-icon-size: #{calculate(20px)};
+$uploader-file-icon-color: var(--#{$prefix}-color-gray-7);
+$uploader-file-name-padding: 0 var(--#{$prefix}-padding-base);
+$uploader-file-name-margin: var(--#{$prefix}-padding-xs) 0 0 0;
+$uploader-file-name-font-size: var(--#{$prefix}-font-size-sm);
+$uploader-file-name-text-color: var(--#{$prefix}-color-gray-7);
+$uploader-mask-background-color: opacify(#323233, 0.88);
+$uploader-mask-text-color: var(--#{$prefix}-color-white);
+$uploader-mask-icon-size: #{calculate(22px)};
+$uploader-mask-message-margin: #{calculate(6px)} 0 0 0;
+$uploader-mask-message-padding: 0 var(--#{$prefix}-padding-base);
+$uploader-mask-message-font-size: var(--#{$prefix}-font-size-sm);
+$uploader-mask-message-line-height: #{calculate(14px)};
+$uploader-loading-icon-size: #{calculate(22px)};
+$uploader-loading-icon-color: var(--#{$prefix}-color-white);
+$uploader-disabled-opacity: $disabled-opacity; 
+$uploader-preview-margin: 0 var(--#{$prefix}-padding-xs) var(--#{$prefix}-padding-xs) 0;
+
+// IndexBar
+$index-bar-right: #{calculate(8px)};
+$index-bar-index-padding: 6px 8px;
+$index-bar-index-font-weight: 500;
+$index-bar-index-highlight-color: var(--#{$prefix}-color-white);
+$index-bar-index-highlight-background-color: var(--#{$prefix}-color-black);
+$index-bar-index-font-size: var(--#{$prefix}-font-size-sm);
+$index-bar-index-line-height: #{calculate(14px)};
+$index-bar-sticky-z-index: 1;
+$index-bar-index-zindex: 1;
+$index-bar-anchor-padding: 0 var(--#{$prefix}-padding-md);
+$index-bar-anchor-text-color: var(--#{$prefix}-color-text);
+$index-bar-anchor-actived-text-color: var(--#{$prefix}-color-black);
+$index-bar-anchor-font-weight: 500;
+$index-bar-anchor-font-size: var(--#{$prefix}-font-size-md);
+$index-bar-anchor-line-height: #{calculate(32px)};
+$index-bar-anchor-background-color: var(--#{$prefix}-color-gray-1);
+$index-bar-anchor-actived-background-color: var(--#{$prefix}-color-gray-1);
+
+// Dropdown Item
+$dropdown-item-trigger-title-disabled-color: var(--#{$prefix}-color-gray-6);
+$dropdown-item-option-active-color: var(--#{$prefix}-color-red);
+$dropdown-item-trigger-title-font-size: #{calculate(15px)};
+$dropdown-item-trigger-title-active-color: var(--#{$prefix}-color-red);
+$dropdown-item-trigger-title-padding: 0 var(--#{$prefix}-padding-xs);
+$dropdown-item-trigger-title-line-height: #{calculate(18px)};
+
+// Dropdown Menu
+$dropdown-menu-height: #{calculate(50px)};
+$dropdown-menu-background-color: var(--#{$prefix}-color-white);
+$dropdown-menu-box-shadow: 0 #{calculate(2px)} #{calculate(12px)} fade(#{var(--#{$prefix}-color-gray-7)} 12);
+
+// Radio 
+$radio-size: #{calculate(20px)};
+$radio-border-color: var(--#{$prefix}-color-gray-5);
+$radio-transition-duration: 0.2s;
+$radio-label-margin: #{calculate(10px)};
+$radio-label-color: var(--#{$prefix}-color-text);
+$radio-label-font-size: var(--#{$prefix}-font-size-md);
+$radio-checked-icon-color: var(--#{$prefix}-color-blue);
+$radio-disabled-icon-color: var(--#{$prefix}-color-gray-5);
+$radio-disabled-label-color: var(--#{$prefix}-color-gray-5);
+$radio-disabled-background-color: var(--#{$prefix}-border-color);
+
+// Checkbox
+$checkbox-size: #{calculate(20px)};
+$checkbox-border-color: var(--#{$prefix}-color-gray-5);
+$checkbox-transition-duration: 0.2s;
+$checkbox-label-margin: #{calculate(10px)};
+$checkbox-label-font-size: var(--#{$prefix}-font-size-md);
+$checkbox-label-color: var(--#{$prefix}-color-text);
+$checkbox-checked-icon-color: var(--#{$prefix}-color-blue);
+$checkbox-disabled-icon-color: var(--#{$prefix}-color-gray-5);
+$checkbox-disabled-label-color: var(--#{$prefix}-color-gray-5);
+$checkbox-disabled-background-color: var(--#{$prefix}-border-color);
+
+// switch
+$switch-width: 2em;
+$switch-height: 1em;
+$switch-size: #{calculate(30px)};
+$switch-node-size: 1em;
+$switch-node-z-index: 1;
+$switch-node-background-color: var(--#{$prefix}-color-white);
+$switch-node-box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.05), 0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 3px 3px 0 rgba(0, 0, 0, 0.05);
+$switch-background-color: var(--#{$prefix}-color-white);
+$switch-on-background-color: var(--#{$prefix}-color-blue);
+$switch-transition-duration: 0.3s;
+$switch-disabled-opacity: 0.4;
+$switch-border: 1px solid rgba(0, 0, 0, 0.1);
+$switch-loading-actived-color: #1989fa;
+$switch-loading-inactived-color: #969799;
+
+// Calendar
+$calendar-height: 100%;
+$calendar-background-color: var(--#{$prefix}-color-white);
+$calendar-popup-height: 80%;
+$calendar-header-box-shadow: 0 2px 10px rgba(125, 126, 128, 0.16);
+$calendar-header-title-height: #{calculate(44px)};
+$calendar-header-title-font-size: var(--#{$prefix}-font-size-lg);
+$calendar-header-subtitle-font-size: var(--#{$prefix}-font-size-md);
+$calendar-weekdays-height: #{calculate(30px)};
+$calendar-weekdays-font-size: var(--#{$prefix}-font-size-sm);
+$calendar-month-title-font-size: var(--#{$prefix}-font-size-md);
+$calendar-month-mark-color: fade(#{var(--#{$prefix}-color-gray-2)}, 80%);
+$calendar-month-mark-font-size: #{calculate(160px)};
+$calendar-day-height: #{calculate(64px)};
+$calendar-day-font-size: var(--#{$prefix}-font-size-lg);
+$calendar-range-edge-color: var(--#{$prefix}-color-white);
+$calendar-range-edge-background-color: var(--#{$prefix}-color-red);
+$calendar-range-middle-color: var(--#{$prefix}-color-red);
+$calendar-range-middle-background-opacity: 0.1;
+$calendar-selected-day-size: #{calculate(54px)};
+$calendar-selected-day-color: var(--#{$prefix}-color-white);
+$calendar-info-font-size: var(--#{$prefix}-font-size-sm);
+$calendar-info-line-height: #{calcuate(14px)};
+$calendar-selected-day-background-color: var(--#{$prefix}-color-red);
+$calendar-day-disabled-color: var(--#{$prefix}-color-gray-5);
+$calendar-confirm-button-height: #{calculate(36px)};
+$calendar-confirm-button-margin: #{calculate(7px)} 0;
+$calendar-confirm-button-line-height: #{calcuate(34px)};
+
+// CountDown
+$count-down-text-color: var(--#{$prefix}-color-text);
+$count-down-font-size: var(--#{$prefix}-font-size-md);
+$count-down-line-height: #{calculate(20px)};
+
+// Divider
+$divider-margin: var(--#{$prefix}-padding-md) 0;
+$divider-text-color: var(--#{$prefix}-color-gray-6);
+$divider-font-size: var(--#{$prefix}-font-size-md);
+$divider-line-height: #{calculate(24px)};
+$divider-border-color: var(--#{$prefix}-border-color);
+$divider-content-padding: var(--#{$prefix}-padding-md);
+$divider-content-left-width: 10%;
+$divider-content-right-width: 10%;
+
+// Progress
+$progress-height: #{calculate(4px)};
+$progress-background-color: var(--#{$prefix}-color-gray-3);
+$progress-pivot-padding: 0 #{calculate(5px)};
+$progress-color: var(--#{$prefix}-color-blue);
+$progress-inactive-color: #cacaca;
+$progress-pivot-font-size: var(--#{$prefix}-font-size-xs);
+$progress-pivot-line-height: 1.6;
+$progress-pivot-background-color: var(--#{$prefix}-color-blue);
+$progress-pivot-text-color: var(--#{$prefix}-color-white);
+
+// Tabs
+$tabs-default-color: var(--#{$prefix}-color-red);
+$tabs-nav-card-height: #{calculate(30px)};
+$tabs-nav-background-color: var(--#{$prefix}-color-white);
+$tabs-bottom-bar-height: #{calculate(3px)};
+$tabs-bottom-bar-color: var(--#{$prefix}-color-red);
+$tabs-tab-padding: #{calculate(15px)} #{calculate(5px)};
+$tabs-tab-text-color: var(--#{$prefix}-color-gray-7);
+$tabs-tab-actived-text-color: var(--#{$prefix}-color-text);
+$tabs-tab-card-actived-text-color: var(--#{$prefix}-color-white);
+$tabs-tab-disabled-text-color: var(--#{$prefix}-color-gray-5);
+$tabs-tab-font-size: var(--#{$prefix}-font-size-md);
+$tabs-tab-line-color: var(--#{$prefix}-color-red);
+$tabs-tab-line-width: #{calculate(40px)};
+$tabs-tab-line-height: #{calculate(3px)};
+
+// Pull Refresh
+$pull-refresh-head-height: #{calculate(50px)};
+$pull-refresh-head-line-height: #{calculate(50px)};
+$pull-refresh-head-font-size: var(--#{$prefix}-font-size-md);
+$pull-refresh-head-color: var(--#{$prefix}-color-gray-6);
+$pull-refresh-loading-icon-size: #{calculate(16px)};
+$pull-refresh-loading-icon-width: #{calculate(16px)};
+$pull-refresh-loading-icon-height: #{calculate(16px)};
+
+// skeleton
+$skeleton-padding: 0 var(--#{$prefix}-padding-md);
+$skeleton-title-width: 40%;
+$skeleton-row-width: 100%;
+$skeleton-row-height: #{calculate(16px)};
+$skeleton-row-background-color: var(--#{$prefix}-color-gray-2);
+$skeleton-row-margin-top: var(--#{$prefix}-padding-sm);
+$skeleton-col-background-color: var(--#{$prefix}-color-gray-2);
+$skeleton-col-margin: 0 #{calculate(5px)} 0 0;
+$skeleton-col-height: 100px;
+$skeleton-col-border-radius: 5px;
+$skeleton-cols-margin-top: var(--#{$prefix}-padding-sm);
+$skeleton-avatar-size: #{calculate(48px)};
+$skeleton-avatar-background-color: var(--#{$prefix}-color-gray-2);
+$skeleton-animation-duration: 1.2s;
+
+// notify
+$notify-padding: #{calculate(6px)} #{calculate(15px)};
+$notify-font-size: #{calculate(15px)};
+$notify-line-height: #{calculate(20px)};
+$notify-primary-color: var(--#{$prefix}-color-blue);
+$notify-success-color: var(--#{$prefix}-color-green);
+$notify-danger-color: var(--#{$prefix}-color-red);
+$notify-warning-color: var(--#{$prefix}-color-orange);

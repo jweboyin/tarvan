@@ -1,0 +1,9 @@
+dist/
+node_modules/
+.DS_Store
+config/local.js
+project.private.config.json
+www
+*.code-workspace
+
+

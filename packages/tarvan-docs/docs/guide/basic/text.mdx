@@ -1,0 +1,96 @@
+import Image from '../../components/image'
+
+# Text 文本
+
+### 介绍
+
+用于文本内容。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Text } from 'czh-weapp'
+```
+
+### 文本类型
+
+通过type属性设置文本类型。
+
+<Image src="/imgs/text/type.jpg" />
+
+```jsx
+<Text>默认文本</Text>
+<Text type="primary">主要按钮</Text>
+<Text type="secondary">次要文本</Text>
+<Text type="warning">警告文本</Text>
+<Text type="danger">危险文本</Text>
+<Text type="gray">灰色文本</Text>
+<Text type="light-gray">淡灰色文本</Text>
+<Text type="dark">深色文本</Text>
+<Text type="black">黑色文本</Text>
+```
+
+### 文本大小
+
+通过size属性设置文本大小。
+
+<Image src="/imgs/text/size.jpg" />
+
+```jsx
+<Text size="mini">mini文本</Text>
+<Text size="tiny">tiny文本</Text>
+<Text size="small">small文本</Text>
+<Text size="middle">middle文本</Text>
+<Text size="large">large文本</Text>
+<Text size="xlarge">xlarge文本</Text>
+<Text size="xxlarge">xxlarge文本</Text>
+```
+
+### ellipse 缩略
+
+通过ellipse控制文本是否缩略。
+
+<Image src="/imgs/text/ellipse.jpg" />
+
+```jsx
+<Text ellipsis>我是一段很长的文本需要缩略我是一段很长的文本需要缩略</Text>
+```
+
+### 文本加粗
+
+通过strong控制翁嗯是否加粗。
+
+```jsx
+<Text strong>加粗文本</Text>
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| type | 文本类型，可选值为primary, secondary, warning, danger, gray, light-gray, dark, black, white  | _string_ | - |
+| size | 文本大小，可选值为mini, tiny, small, middle, large, xlarge, xxlarge  | _string_ | - |
+| disabled | 是否禁用 | _boolean_ | `false` |
+| ellipse | 是否缩略 | _boolean_ | `false` |
+</div>
+
+### Events
+
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onClick | 点击文本触发 | - |
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-text-font-weight | 文本默认粗细程度 | `400` |
+| --czh-text-font-size | 文本默认字体大小 | `--czh-font-size-md` |
+| --czh-text-color | 文本默认字体颜色  | `--czh-color-text` |
+</div>

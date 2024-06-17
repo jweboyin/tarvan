@@ -1,0 +1,77 @@
+{
+  "name": "tarvan",
+  "version": "0.0.1",
+  "private": false,
+  "scripts": {
+    "build:ui": "pnpm --filter @tarvan/ui run build",
+    "publish:ui": "pnpm --filter @tarvan/ui run publish",
+    "build:demo": "pnpm --filter @tarvan/demo run build",
+    "test:demo": "pnpm --filter @tarvan/demo run test",
+    "dev:demo": "pnpm --filter @tarvan/demo run dev",
+    "dev:docs": "pnpm --filter @tarvan/docs run dev",
+    "preview:docs": "pnpm --filter @tarvan/docs run preview",
+    "build:docs": "pnpm --filter @tarvan/docs run build"
+  },
+  "browserslist": [
+    "last 3 versions",
+    "Android >= 4.1",
+    "ios >= 8"
+  ],
+  "author": "jack",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jywebsir/tan.git",
+    "branch": "master",
+    "platform": "github"
+  },
+  "keywords": [
+    "tarvan",
+    "@tarvan/ui",
+    "taro vant"
+  ],
+  "dependencies": {
+    "@babel/runtime": "^7.7.7",
+    "@tarojs/cli": "3.4.9",
+    "@tarojs/components": "3.4.9",
+    "@tarojs/plugin-framework-react": "3.4.9",
+    "@tarojs/react": "3.4.9",
+    "@tarojs/runtime": "3.4.9",
+    "@tarojs/taro": "3.4.9",
+    "@types/lodash": "^4.17.5",
+    "ahooks": "3.1.13",
+    "classnames": "2.3.1",
+    "immer": "9.0.12",
+    "lodash": "4.17.21",
+    "prop-types": "15.8.1",
+    "query-string": "7.1.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-is": "^18.2.0",
+    "use-immer": "0.6.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.24.7",
+    "@tarojs/mini-runner": "3.4.9",
+    "@tarojs/plugin-platform-weapp": "3.4.9",
+    "@tarojs/webpack-runner": "3.4.9",
+    "@types/node": "^14.14.25",
+    "@types/prop-types": "^15.7.12",
+    "@types/react": "^17.0.2",
+    "@types/scheduler": "^0.23.0",
+    "@types/webpack-env": "^1.13.6",
+    "babel-plugin-import": "^1.13.3",
+    "csstype": "^3.1.3",
+    "eslint": "^8.12.0",
+    "eslint-config-taro": "3.4.9",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-react": "^7.8.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "marked": "^4.2.12",
+    "plugin-error": "^2.0.1",
+    "sass": "^1.77.5",
+    "stylelint": "9.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^4.2.4"
+  }
+}

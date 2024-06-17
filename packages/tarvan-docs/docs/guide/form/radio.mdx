@@ -1,0 +1,257 @@
+import Image from '../../components/image'
+
+# Radio 单选框
+
+### 介绍
+
+在一组备选项中进行单选。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Radio } from 'czh-weapp'
+```
+
+### 单独用法
+
+<Image src="/imgs/radio/basic.jpg" />
+
+```jsx
+import { useState } from 'react'
+import { useMemoizedFn } from 'ahooks'
+
+const [checked, setChecked] = useState(false)
+
+const onChangeChecked = useMemoizedFn((val) => {
+  setChecked(val)
+})
+
+<Radio>非受控的</Radio>
+<Radio checked={checked} onChange={onChangeChecked}>受控选中</Radio>
+<Radio defaultChecked>默认选中的</Radio>
+<Radio defaultChecked disabled>禁用的</Radio>
+<Radio shape="square">自定义形状</Radio>
+<Radio labelDisabled>禁用文本点击的</Radio>
+```
+
+### 基础分组用法
+
+<Image src="/imgs/radio/basic-group.jpg" />
+
+```jsx
+<Radio.Group>
+  <Radio value="1">单选框1</Radio>
+  <Radio value="2">单选框2</Radio>
+</Radio.Group>
+```
+
+### 水平排列
+
+将direction属性设置为horizontal后，单选框组会变成水平排列。
+
+<Image src="/imgs/radio/horizontal.jpg" />
+
+```jsx
+<Radio.Group direction="horizontal">
+  <Radio value="1">单选框1</Radio>
+  <Radio value="2">单选框2</Radio>
+</Radio.Group>
+```
+
+### 禁用状态
+
+通过disabled属性禁止选项切换，在Radio上设置diabled可以禁用单个选项。
+
+<Image src="/imgs/radio/disabled.jpg" />
+
+```jsx
+<Radio.Group value="1" disabled>
+  <Radio value="1">单选框1</Radio>
+  <Radio value="2">单选框2</Radio>
+</Radio.Group>
+```
+
+### 自定义形状
+
+将shape属性设置为square，单选框的形状会变成方形。
+
+<Image src="/imgs/radio/shape.jpg" />
+
+```jsx
+<Radio.Group shape="square">
+  <Radio value="1">单选框1</Radio>
+  <Radio value="2">单选框2</Radio>
+</Radio.Group>
+```
+
+### 自定义选中状态颜色
+
+通过css变量来自定义选中状态的颜色。
+
+<Image src="/imgs/radio/custom-color.jpg" />
+
+```jsx
+import style from './color.module.scss'
+
+<Radio.Group value="1" className={style.customColors}>
+  <Radio value="1">单选框1</Radio>
+  <Radio value="2">单选框2</Radio>
+</Radio.Group>
+```
+
+```scss title="color.module.scss"
+.customColors {
+  --czh-radio-checked-icon-color: #07c160;
+}
+```
+
+### 自定义大小
+
+通过css变量来自定义大小。
+
+<Image src="/imgs/radio/custom-size.jpg" />
+
+```jsx
+import style from './size.module.scss'
+
+<Radio.Group value="1" className={style.customSize}>
+  <Radio value="1">单选框1</Radio>
+  <Radio value="2">单选框2</Radio>
+</Radio.Group>
+```
+
+```scss title="size.module.scss"
+.customSize {
+  --czh-radio-font-size: 50px;
+}
+```
+
+### 自定义图标
+
+通过icon属性来自定义图标。
+
+<Image src="/imgs/radio/custom-icon.jpg" />
+
+```jsx
+<Radio.Group  
+  value="1"
+>
+  <Radio 
+    value="1"
+    icon={(checked) => {
+      return (
+        <Icon name={checked ? 'checked' : 'circle'} />
+      )
+    }}
+  >单选框1</Radio>
+  <Radio 
+    value="2"
+    icon={(checked) => {
+      return (
+        <Icon name={checked ? 'checked' : 'circle'} />
+      )
+    }}
+  >单选框2</Radio>
+</Radio.Group>
+```
+
+### 禁用文本点击
+
+通过设置labelDisabled属性可以禁用单选框文本点击。
+
+<Image src="/imgs/radio/disabled-text.jpg" />
+
+```jsx
+<Radio.Group>
+  <Radio value="1" labelDisabled>单选框1</Radio>
+  <Radio value="2" labelDisabled>单选框2</Radio>
+</Radio.Group>
+```
+
+### 与 Cell 组件一起使用
+
+此时你需要再引入Cell和CellGroup组件。
+
+<Image src="/imgs/radio/group.jpg" />
+
+```jsx
+<Radio.Group value="1">
+  <CellGroup>
+    <Cell 
+      title="单选框1"
+      rightIcon={
+        <Radio value="1" />
+      }
+    />
+
+    <Cell
+      title="单选框2"
+      rightIcon={
+        <Radio value="2" />
+      }
+    />
+  </CellGroup>
+</Radio.Group>
+```
+
+## API
+
+### RadioGroup Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| defaultValue | 默认选中项的标识符 | _string_ \| _number_ | - |
+| value | 当前选中项的标识符 | _string_ \| _number_ | - |
+| direction | 排列方向，可选值为 horizontal \| vertical | _string_  | `vertical` |
+| disabled | 	是否禁用所有单选框 | _boolean_ | `false` |
+| shape | 形状，可选值为 square \| round | _string_ | `roud` |
+</div>
+
+### Radio Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| value | 当前选中项的标识符 | _string_ \| _number_ | - |
+| shape | 形状，可选值为 square \| round | _string_ | `roud` |
+| disabled | 	是否禁用所有单选框 | _boolean_ | `false` |
+| labelDisabled | 是否禁用文本内容点击 | _boolean_ | `false` |
+| labelPosition | 文本位置，可选值为 left \| right | _string_ | `right` |
+| icon | 函数: 返回自定义图标组件 | _func_ | - |
+</div>
+
+### RadioGroup Events
+
+<div class="table-container">
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onChange | 当绑定值变化时触发的事件 | `当前选中项的value` |
+</div>
+
+### Radio Events
+
+<div class="table-container">
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onChange | 当绑定值变化时触发的事件 | `当前选中项的value` |
+</div>
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-radio-margin-right | margin-right值 | `--czh-padding-sm` |
+| --czh-radio-border-color | 边框颜色 | `--czh-color-gray-5` |
+| --czh-radio-font-size | 字体大小 | `40px` |
+| --czh-radio-transition-duration | 动画时长，秒 | `0.2s` |
+| --czh-radio-checked-icon-color | 选中状态图标颜色 | `--czh-color-blue` |
+| --czh-radio-disabled-icon-color | 禁用状态图标颜色 | `--czh-color-gray-5` |
+| --czh-radio-disabled-background-color | 禁用状态背景颜色 | `--czh-color-weak` |
+| --czh-radio-label-margin | label的margin值 | `20px` |
+| --czh-radio-label-color | label的字体颜色 | `--czh-color-text` |
+| --czh-radio-label-font-size | label的字体大小 | `--czh-font-size-md` |
+</div>

@@ -1,0 +1,105 @@
+import Image from '../../components/image'
+
+# VirtualList 虚拟列表
+
+### 介绍
+
+我们在使用InifiniteList滚动列表加载大数据量的列表时，即使开启了延迟渲染，在渲染了大批量的列表节点后，在一些性能稍低的手机上就会出现严重的性能问题，导致视图无法响应操作一段时间，这种场景就可以使用这个虚拟列表组件 VirtualList，它通过只渲染当前可视区域内的节点，其他部分在用户滚动到可视区域内之后再渲染。保证了不管滚到的什么位置，实际渲染的节点数都是有限的，从而提高长列表的渲染性能。
+
+暂时只是支持了等高的情况，不等高的情况暂未支持，在业务中有对应需求时，实现后会更新本组件。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { VirtualList } from 'czh-weapp'
+```
+
+### 基础用法
+
+默认只要传入列表数据，列表项高度以及列表项渲染函数就可以了。
+
+<Image src="/imgs/virtual-list/basic.jpg" />
+
+```jsx
+import { useMemoizedFn } from 'ahooks'
+
+const data = []
+
+for (let i = 1; i < 1000; i++) {
+	data.push(`Item-${i}`)
+}
+
+const itemRender = useMemoizedFn((itemData, itemDataIndex, itemIndex) => {
+  return (
+    <view>{itemData}</view>
+  )
+})
+
+<VirtualList
+  itemHeight={100}
+  list={data}
+  itemRender={itemRender}
+/>
+```
+
+### 设置容器高度
+
+通过containerHeight属性来设置容器高度。
+
+<Image src="/imgs/virtual-list/container-height.jpg" />
+
+```jsx
+<VirtualList
+  itemHeight={100}
+  containerHeight={300}
+  list={data}
+  itemRender={itemRender}
+/>
+```
+
+### 设置额外渲染个数
+
+通过overscanCount属性设置除了视窗里面默认的item节点, 还需要额外渲染的item节点个数。这样可以防止极速滚动过程中出现白屏的情况，根据实际情况进行此个数设置。
+
+```jsx
+ <VirtualList
+  itemHeight={100}
+  list={data}
+  itemRender={itemRender}
+  overscanCount={10}
+/>
+```
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| list | 列表数据 | _Array_ | - |
+| containerHeight | 容器高度，默认为可使用窗口高度-5, 减5为分页触发的偏移量 | _number_ | `windowHeight - 5` |
+| itemHeight | 列表项高度		| _number_ | `80` |
+| itemRender | 列表节点渲染函数 | _Function_ | `(data: any, dataIndex: number, index: number) => ReactNode` |
+| overscanCount | 除了视窗里面默认的元素, 还需要额外渲染的列表项个数	| _number_ | `2` |
+| key | 用于指定list数据每一项的唯一 key 的字段名，默认取下标	| _string_ | - |
+</div>
+
+### Events
+
+<div class="table-container">
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onScroll | 滑动到底时触发，可以实现无限滚动	 | - |
+</div>
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-virtual-list-item-margin-bottom | 列表项margin-bottom值 | `0` |
+</div>
+

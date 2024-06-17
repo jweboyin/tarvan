@@ -1,0 +1,211 @@
+import Image from '../../components/image'
+
+# Search 搜索
+
+### 介绍
+
+用于搜索场景的输入框组件。
+
+## 代码演示
+
+### 引入
+
+```jsx
+import { Search } from 'czh-weapp'
+```
+
+### 基本用法
+
+value属性用于控制搜索框中的文字。
+
+<Image src="/imgs/search/basic.jpg" />
+
+```jsx
+import { useState } from 'react'
+import { useMemoizedFn } from 'ahooks'
+
+const [value, setValue] = useState('基本用法')
+
+const onChange = useMemoizedFn((val) => {
+  setValue(val)
+})
+
+<Search 
+  placeholder="请输入搜索关键词"
+  value={value}
+  onChange={onChange}
+/>
+```
+
+### 事件监听
+
+```jsx
+<Search 
+  placeholder="请输入搜索关键词"
+  onChange={onChange}
+  onSearch={onSearch}
+  onClear={onClear}
+  onCancel={onCancel}
+  onFocus={onFocus}
+  onBlur={onBlur}
+/>
+```
+
+### 搜索框内容对齐
+
+通过inputAlign属性来控制搜索框内容对齐。
+
+<Image src="/imgs/search/basic.jpg" />
+
+```jsx
+<Search 
+  placeholder="请输入搜索关键词"
+  inputAlign="center"
+/>
+```
+
+### 禁用/只读搜索框
+
+通过disabled属性来控制是否是禁用状态，readonly属性来控制是否是只读。
+
+<Image src="/imgs/search/disabled.jpg" />
+
+```jsx
+<Search placeholder="搜索框已禁用" disabled />
+<Search placeholder="搜索框已只读" readonly />
+```
+
+### 圆角搜索框
+
+通过shape属性来控制搜索框是否显示为圆角形状。
+
+<Image src="/imgs/search/round.jpg" />
+
+```jsx
+<Search 
+  placeholder="请输入搜索关键词" 
+  shape="round"
+/>
+```
+
+### 自定义背景色
+
+通过className或者style属性设置css变量来自定义背景色。
+
+<Image src="/imgs/search/custom-bg.jpg" />
+
+```jsx
+<Search 
+  placeholder="请输入搜索关键词" 
+  style={{
+    '--czh-search-background': '#4fc08d'
+  }}
+  shape="round"
+/>
+```
+
+### 自定义左侧文本
+
+通过label属性设置左侧文本。
+
+<Image src="/imgs/search/label.jpg" />
+
+```jsx
+<Search 
+  label="地址"
+  placeholder="请输入搜索关键词"
+/>
+```
+
+### 显示右侧取消按钮
+
+通过showAction属性来控制是否显示右侧取消按钮。
+
+<Image src="/imgs/search/right.jpg" />
+
+```jsx
+<Search 
+  placeholder="请输入搜索关键词"
+  showAction
+/>
+```
+
+### 自定义右侧按钮
+
+通过action属性来设置自定义按钮。
+
+<Image src="/imgs/search/action.jpg" />
+
+```jsx
+<Search 
+  placeholder="请输入搜索关键词"
+  action={
+    <Button type="danger">确定</Button>
+  }
+  showAction
+/>
+```
+
+
+## API
+
+### Props
+
+<div class="table-container">
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| label | 搜索框左侧文本	 | _string_ | - |
+| placeholder | 输入框为空时占位符	 | _string_ | - |
+| value | 当前输入的值	 | _string_ \| _number_ | - |
+| focus | 获取焦点	 | _boolean_ | `false` |
+| error | 是否将输入内容标红		 | _boolean_ | `false` |
+| readonly | 是否只读				 | _boolean_ | `false` |
+| clearable | 是否启用清除控件					 | _boolean_ | `true` |
+| showAction | 是否在搜索框右侧显示取消按钮	| _boolean_ | `false` |
+| action | 自定义搜索框右侧按钮	| _ReactElement_ | - |
+| inputAlign | 输入框内容对齐方式，可选值为 left \| center \| right	 | _string_ | `left` |
+| leftIcon | 输入框左侧图标，可以是图标名称 \| 图标文件名 \| 图标url \| 自定义图标组件 | _string_ \| _ReactElement_ | - |
+| rightIcon | 输入框右侧图标，可以是图标名称 \| 图标文件名 \| 图标url \| 自定义图标组件 | _string_ \| _ReactElement_ | - |
+| clearIcon | 清除图标，可以是图标名称 \| 图标文件名 \| 图标url \| 自定义图标组件 | _string_ \| _ReactElement_ | - |
+| maxlength | 最大输入长度，设置为 -1 的时候不限制最大长度	| _number_ | `-1` |
+| shape | 形状，可选值为round \| square | _string_ | `square` |
+| clearTrigger | 显示清除图标的时机，always 表示输入框不为空时展示，focus 表示输入框聚焦且不为空时展示 | _string_ | `focus` |
+| fieldClass | 输入框css类名	| _string_ | - |
+| cancelClass | 取消按钮css类名	| _string_ | - |
+</div>
+
+### Events
+
+<div class="table-container">
+| 事件名 | 说明 | 参数  |
+| --- | --- | --- |
+| onCancel | 取消搜索搜索时触发	 | - |
+| onBlur | 输入框失焦时触发		 | - |
+| onFocus | 输入框聚焦时触发			 | - |
+| onChange | 输入内容变化时触发			 | `value: 当前输入值` |
+| onSearch | 确定搜索时触发			 | `value: 当前输入值` |
+| onClear | 点击清空控件时触发			 | - |
+| onClickInput | 点击搜索区域时触发				 | - |
+</div>
+
+### 样式变量
+
+<div class="table-container">
+| 名称 | 说明 | 默认值 | 
+| --- | --- | --- |
+| --czh-search-padding | 搜索框padding | `20px var(--czh-padding-sm)` |
+| --czh-search-background | 搜索框背景颜色 | `--czh-color-white` |
+| --czh-search-content-padding-left | 输入框padding-left | `--czh-padding-sm` |
+| --czh-search-content-background-color | 输入框背景颜色 | `--czh-color-gray-1` |
+| --czh-search-content-border-radius | 输入框圆角 | `--czh-border-radius-sm` |
+| --czh-search-content-round-border-radius | round类型输入框圆角 | `--czh-border-radius-max` |
+| --czh-search-label-padding | 左侧文本区域padding | `0 10px` |
+| --czh-search-label-font-size | 左侧文本字体大小 | `--czh-font-size-md` |
+| --czh-search-label-color | 左侧文本字体颜色 | `--czh-color-text` |
+| --czh-search-left-icon-color | 左侧图标颜色 | `--czh-color-gray-6` |
+| --czh-search-action-padding | 右侧按钮padding | `0 --czh-padding-xs` |
+| --czh-search-action-text-color | 右侧按钮字体颜色 | `--czh-color-text` |
+| --czh-search-action-font-size | 右侧按钮字体大小 | `--czh-font-size-md` |
+</div>
+
+
